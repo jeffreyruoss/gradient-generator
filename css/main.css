@@ -1,0 +1,77 @@
+body {
+	font-family: Arial, sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: 0;
+	background-color: #f0f0f0;
+}
+
+#gradient-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#gradient-rectangle {
+	position: relative;
+	width: 600px;
+	height: 100px;
+	background: linear-gradient(to right, black 0%, white 100%);
+	border-radius: 10px;
+	border: 5px solid #fff;
+	margin-bottom: 20px;
+	cursor: cell;
+}
+
+.marker {
+	position: absolute;
+	transform: translateX(-50%);
+	top: -11%;
+	border-radius: 3px;
+	border: 1px solid #aaa;
+	width: 12px;
+	height: 120%;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	cursor: move;
+	background-color: #ddd;
+}
+
+.marker:before {
+	content: '';
+	position: absolute;
+	top: -15px;
+	left: -7px;
+	border-radius: 3px;
+	border: 1px solid #aaa;
+	width: 24px;
+	height: 18px;
+	background: radial-gradient(circle, #bbb 30%, #ddd 20%);
+	background-size: 6px 6px;
+}
+
+.marker:after {
+	content: '';
+	position: absolute;
+	bottom: -15px;
+	left: -7px;
+	border-radius: 3px;
+	border: 1px solid #aaa;
+	width: 24px;
+	height: 18px;
+	background: radial-gradient(circle, #bbb 30%, #ddd 20%);
+	background-size: 6px 6px;
+}
+
+.color-picker {
+	position: absolute;
+	left: -10px;
+	height: 32px;
+	width: 32px;
+	background: white;
+	border: 1px solid #aaa;
+	cursor: pointer;
+}
