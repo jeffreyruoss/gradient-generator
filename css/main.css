@@ -75,12 +75,6 @@ body {
 	background-position: top center;
 }
 
-.color-picker {
-	position: absolute;
-	left: -6px;
-	height: 32px;
-	width: 32px;
-	background: white;
-	border: 1px solid #aaa;
-	cursor: pointer;
+.color-value {
+	background-color: #000;
 }

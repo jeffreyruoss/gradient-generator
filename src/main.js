@@ -12,23 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		gradientRectangle.style.background = `linear-gradient(to right, ${gradientString})`;
 	}
 
-	function updateMarkers() {
-		Array.from(markers).forEach((marker, index) => {
-			marker.style.left = `${gradientStops[index].position}%`;
-			const colorPicker = marker.querySelector('.color-picker');
-			colorPicker.value = gradientStops[index].color;
-		});
-	}
-
 	function initMarkers() {
 		Array.from(markers).forEach((marker, index) => {
-			const colorPicker = marker.querySelector('.color-picker');
 			const startX = gradientRectangle.offsetLeft;
-
-			colorPicker.addEventListener('input', (event) => {
-				gradientStops[index].color = event.target.value;
-				updateGradient();
-			});
 
 			marker.addEventListener('mousedown', (event) => {
 				const onMouseMove = (e) => {
@@ -52,4 +38,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	updateGradient();
 	initMarkers();
+
+
+
+	let colorisPickers = document.querySelectorAll('.coloris-picker');
+	colorisPickers.forEach(picker => {
+		picker.addEventListener('input', function () {
+			let pickedColor = this.value;
+			this.previousElementSibling.textContent = pickedColor; // Update the color value in the marker
+			this.previousElementSibling.dataset.colorValue = pickedColor; // Update the data-color-value attribute in the marker
+			updateGradientStops();
+			updateGradient();
+		});
+	});
+
+	// get all data-color-value attributes of the .color-value elements and set the background gradient to the gradientRectangle
+	function setGradient() {
+		let colorValues = document.querySelectorAll('.color-value');
+		let gradientString = Array.from(colorValues).map(colorValue => colorValue.dataset.colorValue).join(', ');
+		gradientRectangle.style.background = `linear-gradient(to right, ${gradientString})`;
+	}
+
+	// update gradientStops array with the new color and position values
+	function updateGradientStops() {
+		gradientStops = Array.from(markers).map(marker => {
+			return {
+				color: marker.querySelector('.color-value').dataset.colorValue,
+				position: Number(marker.style.left.replace('%', ''))
+			};
+		});
+	}
 });
