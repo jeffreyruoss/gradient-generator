@@ -1,18 +1,15 @@
 import './style.css'
 import './css/main.css'
 import './src/main.js'
+import { createGradientContainer } from './src/components/GradientContainer.js'
+import { createMarker } from './src/components/Marker.js'
+
+const marker1 = createMarker('0%', '#000000');
+const marker2 = createMarker('100%', '#FFFFFF');
+const gradientContainer = createGradientContainer(marker1 + marker2);
 
 document.querySelector('#app').innerHTML = `
   <div>
-    <div id="gradient-container">
-      <div id="gradient-rectangle">
-        <div class="marker" style="left: 0%;">
-          <input type="color" value="#000000" class="color-picker">
-        </div>
-        <div class="marker" style="left: 100%;">
-          <input type="color" value="#FFFFFF" class="color-picker">
-        </div>
-      </div>
-    </div>
+    ${gradientContainer}
   </div>
-`
+`;

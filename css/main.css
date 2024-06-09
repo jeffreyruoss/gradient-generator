@@ -5,23 +5,24 @@ body {
 	align-items: center;
 	height: 100vh;
 	margin: 0;
-	background-color: #f0f0f0;
+	background-color: #ecf4ff;
 }
 
 #gradient-container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	border-radius: 10px;
+	border: 5px solid #fff;
 }
 
 #gradient-rectangle {
 	position: relative;
+	border-radius: 7px;
+	border: 1px solid #eee;
 	width: 600px;
 	height: 100px;
 	background: linear-gradient(to right, black 0%, white 100%);
-	border-radius: 10px;
-	border: 5px solid #fff;
-	margin-bottom: 20px;
 	cursor: cell;
 }
 
@@ -29,46 +30,54 @@ body {
 	position: absolute;
 	transform: translateX(-50%);
 	top: -11%;
-	border-radius: 3px;
-	border: 1px solid #aaa;
-	width: 12px;
+	border-left: 1px solid #eee;
+	border-right: 1px solid #eee;
+	width: 20px;
 	height: 120%;
 	cursor: pointer;
 	display: flex;
 	align-items: center;
 	cursor: move;
-	background-color: #ddd;
+	background-color: #fff;
 }
 
 .marker:before {
 	content: '';
 	position: absolute;
 	top: -15px;
-	left: -7px;
-	border-radius: 3px;
-	border: 1px solid #aaa;
-	width: 24px;
-	height: 18px;
-	background: radial-gradient(circle, #bbb 30%, #ddd 20%);
+	left: -2px;
+	border-top: 2px solid #c8deff;
+	border-left: 1px solid #c8deff;
+	border-right: 1px solid #c8deff;
+	border-bottom: 1px solid #c8deff;
+	border-radius: 3px 3px 0 0;
+	width: 22px;
+	height: 13px;
+	background: radial-gradient(circle, #bbb 30%, #c8deff 20%);
 	background-size: 6px 6px;
+	background-position: top center;
 }
 
 .marker:after {
 	content: '';
 	position: absolute;
+	left: -2px;
 	bottom: -15px;
-	left: -7px;
-	border-radius: 3px;
-	border: 1px solid #aaa;
-	width: 24px;
-	height: 18px;
-	background: radial-gradient(circle, #bbb 30%, #ddd 20%);
+	border-top: 2px solid #c8deff;
+	border-left: 1px solid #c8deff;
+	border-right: 1px solid #c8deff;
+	border-bottom: 1px solid #c8deff;
+	border-radius: 0 0 3px 3px;
+	width: 22px;
+	height: 13px;
+	background: radial-gradient(circle, #bbb 30%, #c8deff 20%);
 	background-size: 6px 6px;
+	background-position: top center;
 }
 
 .color-picker {
 	position: absolute;
-	left: -10px;
+	left: -6px;
 	height: 32px;
 	width: 32px;
 	background: white;
