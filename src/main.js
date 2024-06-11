@@ -49,10 +49,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	function handlePickerInput(picker) {
 		let pickedColor = picker.value;
-		picker.previousElementSibling.dataset.colorValue = pickedColor;
+		let marker = picker.parentElement;
+		marker.dataset.colorValue = pickedColor;
 		updateGradientStops();
 		updateGradient();
-		picker.nextElementSibling.style.backgroundColor = pickedColor;
+		picker.parentElement.querySelector('.color-swatch').style.backgroundColor = pickedColor;
 	}
 
 	function initColorisPickers() {
@@ -63,9 +64,10 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	function updateGradientStops() {
+
 		gradientStops = Array.from(markers).map(marker => {
 			return {
-				color: marker.querySelector('.color-value').dataset.colorValue,
+				color: marker.dataset.colorValue,
 				position: Number(marker.style.left.replace('%', ''))
 			};
 		});
