@@ -19,8 +19,8 @@ body {
 #gradient-rectangle {
 	position: relative;
 	border-radius: 7px;
-	border: 1px solid #eee;
-	width: 400px;
+	border: 1px solid #ddd;
+	width: 330px;
 	height: 100px;
 	background: linear-gradient(to right, black 0%, white 100%);
 	cursor: cell;
@@ -29,15 +29,15 @@ body {
 .marker {
 	position: absolute;
 	transform: translateX(-50%);
-	border-left: 1px solid #eeeeee71;
-	border-right: 1px solid #eeeeee71;
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
 	width: 18px;
 	height: 100%;
 	cursor: pointer;
 	display: flex;
 	align-items: center;
 	cursor: move;
-	background-color: #ffffff80;
+	background-color: #ffffff;
 }
 
 .marker:before {
