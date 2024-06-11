@@ -1,11 +1,12 @@
+export let gradientStops = [
+	{ color: '#fff', position: 0 },
+	{ color: '#999', position: 50 },
+	{ color: '#000', position: 100 }
+];
+
 document.addEventListener('DOMContentLoaded', () => {
 	const gradientRectangle = document.getElementById('gradient-rectangle');
 	const markers = gradientRectangle.getElementsByClassName('marker');
-
-	let gradientStops = [
-		{ color: '#000000', position: 0 },
-		{ color: '#FFFFFF', position: 100 }
-	];
 
 	function createGradientString(stops) {
 		return stops.map(stop => `${stop.color} ${stop.position}%`).join(', ');
@@ -57,12 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		colorisPickers.forEach(picker => {
 			picker.addEventListener('input', () => handlePickerInput(picker));
 		});
-	}
-
-	function setGradient() {
-		let colorValues = document.querySelectorAll('.color-value');
-		let gradientString = Array.from(colorValues).map(colorValue => colorValue.dataset.colorValue).join(', ');
-		gradientRectangle.style.background = `linear-gradient(to right, ${gradientString})`;
 	}
 
 	function updateGradientStops() {
