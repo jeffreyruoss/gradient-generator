@@ -20,7 +20,7 @@ body {
 	position: relative;
 	border-radius: 7px;
 	border: 1px solid #eee;
-	width: 600px;
+	width: 400px;
 	height: 100px;
 	background: linear-gradient(to right, black 0%, white 100%);
 	cursor: cell;
@@ -29,30 +29,29 @@ body {
 .marker {
 	position: absolute;
 	transform: translateX(-50%);
-	top: -11%;
-	border-left: 1px solid #eee;
-	border-right: 1px solid #eee;
-	width: 20px;
-	height: 120%;
+	border-left: 1px solid #eeeeee71;
+	border-right: 1px solid #eeeeee71;
+	width: 18px;
+	height: 100%;
 	cursor: pointer;
 	display: flex;
 	align-items: center;
 	cursor: move;
-	background-color: #fff;
+	background-color: #ffffff80;
 }
 
 .marker:before {
 	content: '';
 	position: absolute;
 	top: -15px;
-	left: -2px;
+	left: -3px;
 	border-top: 2px solid #c8deff;
 	border-left: 1px solid #c8deff;
 	border-right: 1px solid #c8deff;
 	border-bottom: 1px solid #c8deff;
 	border-radius: 3px 3px 0 0;
 	width: 22px;
-	height: 13px;
+	height: 18px;
 	background: radial-gradient(circle, #bbb 30%, #c8deff 20%);
 	background-size: 6px 6px;
 	background-position: top center;
@@ -61,7 +60,7 @@ body {
 .marker:after {
 	content: '';
 	position: absolute;
-	left: -2px;
+	left: -3px;
 	bottom: -15px;
 	border-top: 2px solid #c8deff;
 	border-left: 1px solid #c8deff;
@@ -69,7 +68,7 @@ body {
 	border-bottom: 1px solid #c8deff;
 	border-radius: 0 0 3px 3px;
 	width: 22px;
-	height: 13px;
+	height: 18px;
 	background: radial-gradient(circle, #bbb 30%, #c8deff 20%);
 	background-size: 6px 6px;
 	background-position: top center;
@@ -77,4 +76,19 @@ body {
 
 .color-value {
 	background-color: #000;
+}
+
+.color-swatch {
+	position: absolute;
+	left: -4px;
+	width: 24px;
+	height: 24px;
+	border: 1px solid #ccc;
+	cursor: pointer;
+}
+
+.coloris-picker {
+	width: 1px;
+	position: absolute;
+	opacity: 0;
 }

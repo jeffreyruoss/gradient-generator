@@ -45,10 +45,12 @@ document.addEventListener('DOMContentLoaded', () => {
 	colorisPickers.forEach(picker => {
 		picker.addEventListener('input', function () {
 			let pickedColor = this.value;
-			this.previousElementSibling.textContent = pickedColor; // Update the color value in the marker
-			this.previousElementSibling.dataset.colorValue = pickedColor; // Update the data-color-value attribute in the marker
+			this.previousElementSibling.dataset.colorValue = pickedColor;
 			updateGradientStops();
 			updateGradient();
+
+			// set the background color of the .color-swatch element
+			this.nextElementSibling.style.backgroundColor = pickedColor;
 		});
 	});
 
@@ -68,4 +70,13 @@ document.addEventListener('DOMContentLoaded', () => {
 			};
 		});
 	}
+
+	// on click of a .color-swatch element, trigger the click event of the corresponding .coloris-picker element
+	const colorSwatches = document.querySelectorAll('.color-swatch');
+	colorSwatches.forEach(swatch => {
+		swatch.addEventListener('click', function () {
+			let marker = this.parentElement;
+			marker.querySelector('.coloris-picker').click();
+		});
+	});
 });
