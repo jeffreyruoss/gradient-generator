@@ -1,3 +1,5 @@
+import { createMarker } from './components/Marker.js';
+
 export let gradientStops = [
 	{ color: '#fff', position: 0 },
 	{ color: '#999', position: 25 },
@@ -56,12 +58,13 @@ document.addEventListener('DOMContentLoaded', () => {
 		updateGradientStops();
 		updateGradient();
 		picker.parentElement.querySelector('.color-swatch').style.backgroundColor = pickedColor;
+		if (event) event.stopPropagation();
 	}
 
 	function initColorisPickers() {
 		let colorisPickers = document.querySelectorAll('.coloris-picker');
 		colorisPickers.forEach(picker => {
-			picker.addEventListener('input', () => handlePickerInput(picker));
+			picker.addEventListener('input', (event) => handlePickerInput(picker, event));
 		});
 	}
 
@@ -74,15 +77,16 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 	}
 
-	function handleSwatchClick(swatch) {
+	function handleSwatchClick(swatch, event) {
 		let marker = swatch.parentElement;
 		marker.querySelector('.coloris-picker').click();
+		event.stopPropagation();
 	}
 
 	function initColorSwatches() {
 		const colorSwatches = document.querySelectorAll('.color-swatch');
 		colorSwatches.forEach(swatch => {
-			swatch.addEventListener('click', () => handleSwatchClick(swatch));
+			swatch.addEventListener('click', (event) => handleSwatchClick(swatch, event));
 		});
 	}
 
@@ -96,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	function handleTrashButtonClick(marker) {
-		button.parentElement.remove();
+		marker.remove();
 		updateMarkerIndices();
 		updateGradientStops();
 		updateGradient();
@@ -109,9 +113,56 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 	}
 
+	function addMarker() {
+		gradientRectangle.addEventListener('click', (event) => {
+			if (event.target !== gradientRectangle) {
+				return;
+			}
+			let x = event.clientX - gradientRectangle.offsetLeft;
+
+			// get the color of the closest marker to the left of the x position
+			let closestMarker = null;
+			let closestDistance = Infinity;
+			Array.from(markers).forEach(marker => {
+				if (marker.offsetLeft < x) {
+					let distance = Math.abs(marker.offsetLeft - x);
+					if (distance < closestDistance) {
+						closestMarker = marker;
+						closestDistance = distance;
+					}
+				}
+			});
+
+			let color = closestMarker.dataset.colorValue;
+
+			let index = closestMarker.dataset.stopIndex + 1;
+
+			let position = Math.round((x / gradientRectangle.offsetWidth) * 100) + '%';
+
+			const marker = createMarker(position, color, index);
+
+			closestMarker.insertAdjacentHTML('afterend', marker);
+
+			updateMarkerIndices();
+
+			updateGradientStops();
+
+			updateGradient();
+
+			initColorisPickers();
+			initColorSwatches();
+
+
+			initMarkers();
+			initTrashButtons();
+		});
+	}
+
+
 	updateGradient();
 	initMarkers();
 	initColorisPickers();
 	initColorSwatches();
 	initTrashButtons();
+	addMarker();
 });
