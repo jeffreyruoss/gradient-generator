@@ -7,61 +7,64 @@ document.addEventListener('DOMContentLoaded', () => {
 		{ color: '#FFFFFF', position: 100 }
 	];
 
+	function createGradientString(stops) {
+		return stops.map(stop => `${stop.color} ${stop.position}%`).join(', ');
+	}
+
 	function updateGradient() {
-		const gradientString = gradientStops.map(stop => `${stop.color} ${stop.position}%`).join(', ');
+		const gradientString = createGradientString(gradientStops);
 		gradientRectangle.style.background = `linear-gradient(to right, ${gradientString})`;
+	}
+
+	function handleMouseMove(e, marker, index, startX) {
+		const newLeft = Math.min(Math.max(0, e.clientX - startX), gradientRectangle.offsetWidth);
+		const newPosition = (newLeft / gradientRectangle.offsetWidth) * 100;
+		gradientStops[index].position = newPosition;
+		marker.style.left = `${newPosition}%`;
+		updateGradient();
+	}
+
+	function handleMouseUp(onMouseMove) {
+		document.removeEventListener('mousemove', onMouseMove);
+		document.removeEventListener('mouseup', handleMouseUp);
+	}
+
+	function handleMouseDown(event, marker, index, startX) {
+		const onMouseMove = (e) => handleMouseMove(e, marker, index, startX);
+		const onMouseUp = () => handleMouseUp(onMouseMove);
+
+		document.addEventListener('mousemove', onMouseMove);
+		document.addEventListener('mouseup', onMouseUp);
 	}
 
 	function initMarkers() {
 		Array.from(markers).forEach((marker, index) => {
 			const startX = gradientRectangle.offsetLeft;
-
-			marker.addEventListener('mousedown', (event) => {
-				const onMouseMove = (e) => {
-					const newLeft = Math.min(Math.max(0, e.clientX - startX), gradientRectangle.offsetWidth);
-					const newPosition = (newLeft / gradientRectangle.offsetWidth) * 100;
-					gradientStops[index].position = newPosition;
-					marker.style.left = `${newPosition}%`;
-					updateGradient();
-				};
-
-				const onMouseUp = () => {
-					document.removeEventListener('mousemove', onMouseMove);
-					document.removeEventListener('mouseup', onMouseUp);
-				};
-
-				document.addEventListener('mousemove', onMouseMove);
-				document.addEventListener('mouseup', onMouseUp);
-			});
+			marker.addEventListener('mousedown', (event) => handleMouseDown(event, marker, index, startX));
 		});
 	}
 
-	updateGradient();
-	initMarkers();
+	function handlePickerInput(picker) {
+		let pickedColor = picker.value;
+		picker.previousElementSibling.dataset.colorValue = pickedColor;
+		updateGradientStops();
+		updateGradient();
+		picker.nextElementSibling.style.backgroundColor = pickedColor;
+	}
 
-
-
-	let colorisPickers = document.querySelectorAll('.coloris-picker');
-	colorisPickers.forEach(picker => {
-		picker.addEventListener('input', function () {
-			let pickedColor = this.value;
-			this.previousElementSibling.dataset.colorValue = pickedColor;
-			updateGradientStops();
-			updateGradient();
-
-			// set the background color of the .color-swatch element
-			this.nextElementSibling.style.backgroundColor = pickedColor;
+	function initColorisPickers() {
+		let colorisPickers = document.querySelectorAll('.coloris-picker');
+		colorisPickers.forEach(picker => {
+			picker.addEventListener('input', () => handlePickerInput(picker));
 		});
-	});
+	}
 
-	// get all data-color-value attributes of the .color-value elements and set the background gradient to the gradientRectangle
 	function setGradient() {
 		let colorValues = document.querySelectorAll('.color-value');
 		let gradientString = Array.from(colorValues).map(colorValue => colorValue.dataset.colorValue).join(', ');
 		gradientRectangle.style.background = `linear-gradient(to right, ${gradientString})`;
 	}
 
-	// update gradientStops array with the new color and position values
 	function updateGradientStops() {
 		gradientStops = Array.from(markers).map(marker => {
 			return {
@@ -71,12 +74,20 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 	}
 
-	// on click of a .color-swatch element, trigger the click event of the corresponding .coloris-picker element
-	const colorSwatches = document.querySelectorAll('.color-swatch');
-	colorSwatches.forEach(swatch => {
-		swatch.addEventListener('click', function () {
-			let marker = this.parentElement;
-			marker.querySelector('.coloris-picker').click();
+	function handleSwatchClick(swatch) {
+		let marker = swatch.parentElement;
+		marker.querySelector('.coloris-picker').click();
+	}
+
+	function initColorSwatches() {
+		const colorSwatches = document.querySelectorAll('.color-swatch');
+		colorSwatches.forEach(swatch => {
+			swatch.addEventListener('click', () => handleSwatchClick(swatch));
 		});
-	});
+	}
+
+	updateGradient();
+	initMarkers();
+	initColorisPickers();
+	initColorSwatches();
 });
