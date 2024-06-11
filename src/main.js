@@ -86,8 +86,32 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 	}
 
+	function initTrashButtons() {
+		const trashButtons = document.querySelectorAll('.trash');
+		trashButtons.forEach(button => {
+			button.addEventListener('click', () => {
+				handleTrashButtonClick(button.parentElement);
+			});
+		});
+	}
+
+	function handleTrashButtonClick(marker) {
+		button.parentElement.remove();
+		updateMarkerIndices();
+		updateGradientStops();
+		updateGradient();
+	}
+
+	function updateMarkerIndices() {
+		const markers = gradientRectangle.getElementsByClassName('marker');
+		Array.from(markers).forEach((marker, index) => {
+			marker.dataset.stopIndex = index;
+		});
+	}
+
 	updateGradient();
 	initMarkers();
 	initColorisPickers();
 	initColorSwatches();
+	initTrashButtons();
 });
