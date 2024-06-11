@@ -19,9 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
 		gradientRectangle.style.background = `linear-gradient(to right, ${gradientString})`;
 	}
 
-	function handleMouseMove(e, marker, index, startX) {
+	function handleMouseMove(e, marker, startX) {
 		const newLeft = Math.min(Math.max(0, e.clientX - startX), gradientRectangle.offsetWidth);
 		const newPosition = (newLeft / gradientRectangle.offsetWidth) * 100;
+		const index = marker.dataset.stopIndex;
 		gradientStops[index].position = newPosition;
 		marker.style.left = `${newPosition}%`;
 		updateGradient();
@@ -32,8 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		document.removeEventListener('mouseup', handleMouseUp);
 	}
 
-	function handleMouseDown(event, marker, index, startX) {
-		const onMouseMove = (e) => handleMouseMove(e, marker, index, startX);
+	function handleMouseDown(event, marker, startX) {
+		const onMouseMove = (e) => handleMouseMove(e, marker, startX);
 		const onMouseUp = () => handleMouseUp(onMouseMove);
 
 		document.addEventListener('mousemove', onMouseMove);
@@ -42,8 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	function initMarkers() {
 		Array.from(markers).forEach((marker, index) => {
+			marker.dataset.stopIndex = index;
 			const startX = gradientRectangle.offsetLeft;
-			marker.addEventListener('mousedown', (event) => handleMouseDown(event, marker, index, startX));
+			marker.addEventListener('mousedown', (event) => handleMouseDown(event, marker, startX));
 		});
 	}
 
@@ -64,7 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	function updateGradientStops() {
-
 		gradientStops = Array.from(markers).map(marker => {
 			return {
 				color: marker.dataset.colorValue,
