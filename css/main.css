@@ -40,6 +40,30 @@ body {
 	background-color: #ffffff;
 }
 
+.marker:hover .trash {
+	opacity: 1;
+}
+
+.trash {
+	position: absolute;
+	top: -40px;
+	right: 0;
+	width: 20px;
+	height: 40px;
+	cursor: pointer;
+	opacity: 0;
+	transition: opacity 0.4s;
+}
+
+.trash svg {
+	transition: fill 0.4s;
+	fill: rgb(235, 166, 166);
+}
+
+.trash svg:hover {
+	fill: rgb(255, 0, 0);
+}
+
 .marker:before {
 	content: '';
 	position: absolute;

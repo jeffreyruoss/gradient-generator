@@ -1,6 +1,8 @@
 export let gradientStops = [
 	{ color: '#fff', position: 0 },
-	{ color: '#999', position: 50 },
+	{ color: '#999', position: 25 },
+	{ color: '#666', position: 50 },
+	{ color: '#333', position: 75 },
 	{ color: '#000', position: 100 }
 ];
 
