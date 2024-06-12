@@ -28,11 +28,12 @@ body {
 
 .marker {
 	position: absolute;
+	top: 110%;
 	transform: translateX(-50%);
 	border-left: 1px solid #ddd;
 	border-right: 1px solid #ddd;
 	width: 18px;
-	height: 100%;
+	height: 50px;
 	cursor: pointer;
 	display: flex;
 	align-items: center;
@@ -44,9 +45,17 @@ body {
 	opacity: 1;
 }
 
+.marker:hover .pencil svg:nth-child(2) {
+	opacity: 1;
+}
+
+.marker:hover .pencil svg:nth-child(1) {
+	opacity: 0.6;
+}
+
 .trash {
 	position: absolute;
-	top: -40px;
+	bottom: -40px;
 	right: 0;
 	width: 20px;
 	height: 25px;
@@ -64,21 +73,39 @@ body {
 	fill: rgb(255, 0, 0);
 }
 
-.marker:before {
-	content: '';
+.pencil svg {
 	position: absolute;
-	top: -15px;
-	left: -3px;
-	border-top: 2px solid #c8deff;
-	border-left: 1px solid #c8deff;
-	border-right: 1px solid #c8deff;
-	border-bottom: 1px solid #c8deff;
-	border-radius: 3px 3px 0 0;
-	width: 22px;
+	top: 3px;
+	left: 3px;
+	width: 18px;
 	height: 18px;
-	background: radial-gradient(circle, #bbb 30%, #c8deff 20%);
-	background-size: 6px 6px;
-	background-position: top center;
+	opacity: 0;
+	transition: opacity 0.4s;
+}
+
+.pencil svg:nth-child(1) {
+	stroke: #fff;
+	stroke-width: 4;
+	opacity: 0;
+}
+
+.pencil:hover svg {
+	opacity: 1;
+}
+
+/* triangle */
+.marker:before {
+	content: "";
+	width: 0;
+	height: 0;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 18px solid #83a5d8;
+	/* border radius top */
+	border-radius: 50px 0 0 0;
+	display: block;
+	position: absolute;
+	top: -18px;
 }
 
 .marker:after {
