@@ -1,10 +1,5 @@
 import { createMarker } from './components/Marker.js';
-
-export let gradientStops = [
-	{ color: '#ADD8E6', position: 0 },
-	{ color: '#FFA07A', position: 50 },
-	{ color: '#0000FF', position: 100 }
-];
+import { gradientStops, setGradientStops } from './store.js';
 
 let gradientRectangle = document.getElementById('gradient-rectangle');
 
@@ -67,12 +62,13 @@ function initColorisPickers() {
 
 function updateGradientStops() {
 	const markers = document.getElementsByClassName('marker');
-	gradientStops = Array.from(markers).map(marker => {
+	const newStops = Array.from(markers).map(marker => {
 		return {
 			color: marker.dataset.colorValue,
 			position: Number(marker.style.left.replace('%', ''))
 		};
 	});
+	setGradientStops(newStops);
 }
 
 function handleSwatchClick(swatch, event) {
