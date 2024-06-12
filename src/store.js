@@ -7,3 +7,14 @@ export let gradientStops = [
 export function setGradientStops(newStops) {
 	gradientStops = newStops;
 }
+
+export function updateGradientStops() {
+	const markers = document.getElementsByClassName('marker');
+	const newStops = Array.from(markers).map(marker => {
+		return {
+			color: marker.dataset.colorValue,
+			position: Number(marker.style.left.replace('%', ''))
+		};
+	});
+	setGradientStops(newStops);
+}

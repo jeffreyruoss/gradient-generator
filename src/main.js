@@ -1,18 +1,10 @@
-import { createMarker } from './components/Marker.js';
-import { gradientStops, setGradientStops } from './store.js';
-
-let gradientRectangle;
-
-function createGradientString(stops) {
-	return stops.map(stop => `${stop.color} ${stop.position}%`).join(', ');
-}
-
-function updateGradient() {
-	const gradientString = createGradientString(gradientStops);
-	gradientRectangle.style.background = `linear-gradient(to right, ${gradientString})`;
-}
+import { init } from './init.js';
+import { gradientStops, updateGradientStops } from './store.js';
+import { getGradientRectangle, updateGradient } from './components/GradientContainer.js';
+import { updateMarkerIndices } from './components/Marker.js';
 
 function handleMouseMove(e, marker, startX) {
+	const gradientRectangle = getGradientRectangle();
 	const newLeft = Math.min(Math.max(0, e.clientX - startX), gradientRectangle.offsetWidth);
 	const newPosition = (newLeft / gradientRectangle.offsetWidth) * 100;
 	const index = marker.dataset.stopIndex;
@@ -26,21 +18,12 @@ function handleMouseUp(onMouseMove) {
 	document.removeEventListener('mouseup', handleMouseUp);
 }
 
-function handleMouseDown(event, marker, startX) {
+export function handleMouseDown(event, marker, startX) {
 	const onMouseMove = (e) => handleMouseMove(e, marker, startX);
 	const onMouseUp = () => handleMouseUp(onMouseMove);
 
 	document.addEventListener('mousemove', onMouseMove);
 	document.addEventListener('mouseup', onMouseUp);
-}
-
-function initMarkers() {
-	const markers = gradientRectangle.getElementsByClassName('marker');
-	Array.from(markers).forEach((marker, index) => {
-		marker.dataset.stopIndex = index;
-		const startX = gradientRectangle.offsetLeft;
-		marker.addEventListener('mousedown', (event) => handleMouseDown(event, marker, startX));
-	});
 }
 
 function handlePickerInput(picker) {
@@ -53,22 +36,11 @@ function handlePickerInput(picker) {
 	if (event) event.stopPropagation();
 }
 
-function initColorisPickers() {
+export function initColorisPickers() {
 	let colorisPickers = document.querySelectorAll('.coloris-picker');
 	colorisPickers.forEach(picker => {
 		picker.addEventListener('input', (event) => handlePickerInput(picker));
 	});
-}
-
-function updateGradientStops() {
-	const markers = document.getElementsByClassName('marker');
-	const newStops = Array.from(markers).map(marker => {
-		return {
-			color: marker.dataset.colorValue,
-			position: Number(marker.style.left.replace('%', ''))
-		};
-	});
-	setGradientStops(newStops);
 }
 
 function handleSwatchClick(swatch, event) {
@@ -77,14 +49,14 @@ function handleSwatchClick(swatch, event) {
 	event.stopPropagation();
 }
 
-function initColorSwatches() {
+export function initColorSwatches() {
 	const colorSwatches = document.querySelectorAll('.color-swatch');
 	colorSwatches.forEach(swatch => {
 		swatch.addEventListener('click', (event) => handleSwatchClick(swatch, event));
 	});
 }
 
-function initTrashButtons() {
+export function initTrashButtons() {
 	const trashButtons = document.querySelectorAll('.trash');
 	trashButtons.forEach(button => {
 		button.addEventListener('click', () => {
@@ -98,57 +70,6 @@ function handleTrashButtonClick(marker) {
 	updateMarkerIndices();
 	updateGradientStops();
 	updateGradient();
-}
-
-function updateMarkerIndices() {
-	const markers = document.getElementsByClassName('marker');
-	Array.from(markers).forEach((marker, index) => {
-		marker.dataset.stopIndex = index;
-	});
-}
-
-function addMarker() {
-	gradientRectangle.addEventListener('click', (event) => {
-		if (event.target !== gradientRectangle) {
-			return;
-		}
-		let x = event.clientX - gradientRectangle.offsetLeft;
-
-		// get the color of the closest marker to the left of the x position
-		let closestMarker = null;
-		let closestDistance = Infinity;
-		const markers = gradientRectangle.getElementsByClassName('marker');
-		Array.from(markers).forEach(marker => {
-			if (marker.offsetLeft < x) {
-				let distance = Math.abs(marker.offsetLeft - x);
-				if (distance < closestDistance) {
-					closestMarker = marker;
-					closestDistance = distance;
-				}
-			}
-		});
-
-		let color = closestMarker.dataset.colorValue;
-		let index = closestMarker.dataset.stopIndex + 1;
-		let position = Math.round((x / gradientRectangle.offsetWidth) * 100) + '%';
-		const marker = createMarker(position, color, index);
-		closestMarker.insertAdjacentHTML('afterend', marker);
-
-		updateMarkerIndices();
-		updateGradientStops();
-		init();
-	});
-}
-
-function init() {
-	gradientRectangle = document.getElementById('gradient-rectangle');
-	updateGradient();
-	initMarkers();
-	initColorisPickers();
-	initColorSwatches();
-	initTrashButtons();
-	addMarker();
-
 }
 
 document.addEventListener('DOMContentLoaded', () => init());
