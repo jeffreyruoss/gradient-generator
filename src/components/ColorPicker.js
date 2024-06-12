@@ -24,6 +24,7 @@ export function initColorisPickers() {
 	let colorisPickers = document.querySelectorAll('.coloris-picker');
 	colorisPickers.forEach(picker => {
 		picker.addEventListener('input', (event) => handlePickerInput(picker));
+		picker.value = picker.parentElement.dataset.colorValue;
 	});
 }
 
