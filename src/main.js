@@ -1,7 +1,7 @@
 import { createMarker } from './components/Marker.js';
 import { gradientStops, setGradientStops } from './store.js';
 
-let gradientRectangle = document.getElementById('gradient-rectangle');
+let gradientRectangle;
 
 function createGradientString(stops) {
 	return stops.map(stop => `${stop.color} ${stop.position}%`).join(', ');
