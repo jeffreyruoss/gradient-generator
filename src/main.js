@@ -1,7 +1,6 @@
 import { init } from './init.js';
 import { gradientStops, updateGradientStops } from './store.js';
 import { getGradientRectangle, updateGradient } from './components/GradientContainer.js';
-import { updateMarkerIndices } from './components/Marker.js';
 
 function handleMouseMove(e, marker, startX) {
 	const gradientRectangle = getGradientRectangle();
@@ -54,22 +53,6 @@ export function initColorSwatches() {
 	colorSwatches.forEach(swatch => {
 		swatch.addEventListener('click', (event) => handleSwatchClick(swatch, event));
 	});
-}
-
-export function initTrashButtons() {
-	const trashButtons = document.querySelectorAll('.trash');
-	trashButtons.forEach(button => {
-		button.addEventListener('click', () => {
-			handleTrashButtonClick(button.parentElement);
-		});
-	});
-}
-
-function handleTrashButtonClick(marker) {
-	marker.remove();
-	updateMarkerIndices();
-	updateGradientStops();
-	updateGradient();
 }
 
 document.addEventListener('DOMContentLoaded', () => init());

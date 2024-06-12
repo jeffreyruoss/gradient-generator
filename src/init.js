@@ -1,6 +1,7 @@
 import { initGradientRectangle, getGradientRectangle, updateGradient } from './components/GradientContainer.js';
 import { initMarkers, addMarker } from './components/Marker.js';
-import { initColorisPickers, initColorSwatches, initTrashButtons } from './main.js';
+import { initColorisPickers, initColorSwatches } from './main.js';
+import { initTrashButtons } from './components/TrashIcon.js';
 
 let gradientRectangle;
 
