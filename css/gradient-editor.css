@@ -17,6 +17,13 @@
 	cursor: cell;
 }
 
+@media (min-width: 768px) {
+	#gradient-rectangle {
+		height: 200px;
+		width: 600px
+	}
+}
+
 .marker {
 	position: absolute;
 	top: 110%;

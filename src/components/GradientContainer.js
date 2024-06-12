@@ -29,4 +29,11 @@ export function createGradientString(stops) {
 export function updateGradient() {
   const gradientString = createGradientString(gradientStops);
   gradientRectangle.style.background = `linear-gradient(to right, ${gradientString})`;
+  updateWrapBgGradient(gradientString);
+}
+
+function updateWrapBgGradient(gradientString) {
+  const wrap = document.querySelector('.wrap');
+  wrap.style.background = `linear-gradient(to right, ${gradientString})`;
+
 }
