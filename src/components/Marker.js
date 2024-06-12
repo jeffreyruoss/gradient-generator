@@ -1,6 +1,6 @@
 import { init } from './../init.js';
 import { createTrashIcon } from './TrashIcon.js';
-import { createPencilIcon } from './PencilIcon.js';
+import { createColorPicker } from './ColorPicker.js';
 import { getGradientRectangle } from './GradientContainer.js';
 import { updateGradientStops } from '../store.js';
 import { handleMouseDown } from '../main.js';
@@ -9,9 +9,7 @@ export function createMarker(position, color, index) {
 	return `
     <div class="marker" style="left: ${position};" data-color-value="${color}" data-stop-index="${index + 1}">
 			${createTrashIcon()}
-			<input type="text" data-coloris class="coloris-picker">
-			<div class="color-swatch" id="color-swatch" style="background-color: ${color}">
-				${createPencilIcon()}
+			${createColorPicker(color)}
 			</div>
     </div>
   `;
