@@ -2,9 +2,11 @@ import { createTrashIcon } from './TrashIcon.js';
 import { createColorPicker } from './ColorPicker.js';
 import { getGradientRectangle, updateGradient } from './GradientContainer.js';
 import { updateGradientStops } from '../lib/gradient-stops.js';
-import { handleMouseDown } from '../main.js';
 import { initColorisPickers, initColorSwatches } from './ColorPicker.js';
 import { initTrashButtons } from './TrashIcon.js';
+
+import { gradientStops } from './../lib/gradient-stops.js';
+import { autoSave } from './../lib/auto-save.js';
 
 export function createMarker(position, color, index) {
 	return `
@@ -75,4 +77,31 @@ export function addMarker(event) {
 
 	createAndInsertMarker(closestMarker, color, index, position);
 	updateUI();
+}
+
+function handleMouseMove(e, marker, startX) {
+	const position = Math.max(0, Math.min(100, ((e.clientX - startX) / marker.parentElement.offsetWidth) * 100));
+	updateMarkerMove(marker, position);
+}
+
+function updateMarkerMove(marker, position) {
+	const gradientRectangle = getGradientRectangle();
+	const index = marker.dataset.stopIndex;
+	gradientStops[index].position = position;
+	marker.style.left = `${position}%`;
+	updateGradient(gradientRectangle);
+}
+
+function handleMouseUp(onMouseMove) {
+	document.removeEventListener('mousemove', onMouseMove);
+	document.removeEventListener('mouseup', handleMouseUp);
+	autoSave();
+}
+
+export function handleMouseDown(event, marker, startX) {
+	const onMouseMove = (e) => handleMouseMove(e, marker, startX);
+	const onMouseUp = () => handleMouseUp(onMouseMove);
+
+	document.addEventListener('mousemove', onMouseMove);
+	document.addEventListener('mouseup', onMouseUp);
 }
