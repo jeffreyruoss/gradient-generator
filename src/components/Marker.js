@@ -1,9 +1,10 @@
-import { init } from '../lib/init.js';
 import { createTrashIcon } from './TrashIcon.js';
 import { createColorPicker } from './ColorPicker.js';
 import { getGradientRectangle } from './GradientContainer.js';
 import { updateGradientStops } from '../lib/gradient-stops.js';
 import { handleMouseDown } from '../main.js';
+import { initColorisPickers, initColorSwatches } from './ColorPicker.js';
+import { initTrashButtons } from './TrashIcon.js';
 
 export function createMarker(position, color, index) {
 	return `
@@ -32,36 +33,34 @@ export function updateMarkerIndices() {
 	});
 }
 
-export function addMarker() {
+export function addMarker(event) {
 	const gradientRectangle = getGradientRectangle();
-	gradientRectangle.addEventListener('click', (event) => {
-		if (event.target !== gradientRectangle) {
-			return;
-		}
-		let x = event.clientX - gradientRectangle.offsetLeft;
+	let x = event.clientX - gradientRectangle.offsetLeft;
 
-		// get the color of the closest marker to the left of the x position
-		let closestMarker = null;
-		let closestDistance = Infinity;
-		const markers = gradientRectangle.getElementsByClassName('marker');
-		Array.from(markers).forEach(marker => {
-			if (marker.offsetLeft < x) {
-				let distance = Math.abs(marker.offsetLeft - x);
-				if (distance < closestDistance) {
-					closestMarker = marker;
-					closestDistance = distance;
-				}
+	// get the color of the closest marker to the left of the x position
+	let closestMarker = null;
+	let closestDistance = Infinity;
+	const markers = gradientRectangle.getElementsByClassName('marker');
+	Array.from(markers).forEach(marker => {
+		if (marker.offsetLeft < x) {
+			let distance = Math.abs(marker.offsetLeft - x);
+			if (distance < closestDistance) {
+				closestMarker = marker;
+				closestDistance = distance;
 			}
-		});
-
-		let color = closestMarker.dataset.colorValue;
-		let index = closestMarker.dataset.stopIndex + 1;
-		let position = Math.round((x / gradientRectangle.offsetWidth) * 100) + '%';
-		const marker = createMarker(position, color, index);
-		closestMarker.insertAdjacentHTML('afterend', marker);
-
-		updateMarkerIndices();
-		updateGradientStops();
-		init();
+		}
 	});
+
+	let color = closestMarker.dataset.colorValue;
+	let index = closestMarker.dataset.stopIndex + 1;
+	let position = Math.round((x / gradientRectangle.offsetWidth) * 100) + '%';
+	const marker = createMarker(position, color, index);
+	closestMarker.insertAdjacentHTML('afterend', marker);
+
+	updateMarkerIndices();
+	updateGradientStops();
+	initMarkers();
+	initColorSwatches();
+	initColorisPickers();
+	initTrashButtons();
 }

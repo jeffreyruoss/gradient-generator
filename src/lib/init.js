@@ -13,5 +13,11 @@ export function init() {
 	initColorisPickers();
 	initColorSwatches();
 	initTrashButtons();
-	addMarker();
+
+	gradientRectangle.addEventListener('click', (event) => {
+		if (event.target !== gradientRectangle) {
+			return;
+		}
+		addMarker(event);
+	});
 }
