@@ -1,7 +1,6 @@
 import { gradientStops } from './gradient-stops';
 
 export function autoSave() {
-	console.log('autoSave');
 	if (typeof (Storage) !== "undefined") {
 		localStorage.setItem('gradient_generator_current_gradient', JSON.stringify(gradientStops));
 	} else {
