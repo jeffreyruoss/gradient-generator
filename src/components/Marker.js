@@ -1,6 +1,6 @@
 import { createTrashIcon } from './TrashIcon.js';
 import { createColorPicker } from './ColorPicker.js';
-import { getGradientRectangle } from './GradientContainer.js';
+import { getGradientRectangle, updateGradient } from './GradientContainer.js';
 import { updateGradientStops } from '../lib/gradient-stops.js';
 import { handleMouseDown } from '../main.js';
 import { initColorisPickers, initColorSwatches } from './ColorPicker.js';
@@ -60,6 +60,7 @@ export function updateUI() {
 	initColorSwatches();
 	initColorisPickers();
 	initTrashButtons();
+	updateGradient();
 }
 
 export function addMarker(event) {
