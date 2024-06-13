@@ -1,4 +1,4 @@
-import { updateMarkerIndices } from './Marker.js';
+import { updateMarkerIndices } from './Marker/Marker.js';
 import { updateGradientStops } from '../lib/gradient-stops.js';
 import { updateGradient } from './GradientContainer.js';
 

@@ -1,5 +1,6 @@
 import { initGradientRectangle, getGradientRectangle, updateGradient } from '../components/GradientContainer.js';
-import { initMarkers, addMarker } from '../components/Marker.js';
+import { initMarkers } from '../components/Marker/Marker.js';
+import { addMarker } from '../components/Marker/add-marker.js';
 import { initColorisPickers, initColorSwatches } from '../components/ColorPicker.js';
 import { initTrashButtons } from '../components/TrashIcon.js';
 
