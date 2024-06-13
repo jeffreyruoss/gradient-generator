@@ -1,5 +1,5 @@
-import { init } from './init.js';
-import { gradientStops } from './store.js';
+import { init } from './lib/init.js';
+import { gradientStops } from './lib/gradient-stops.js';
 import { getGradientRectangle, updateGradient } from './components/GradientContainer.js';
 
 function handleMouseMove(e, marker, startX) {

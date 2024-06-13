@@ -7,7 +7,7 @@ import './src/vendor/coloris.min.css'
 import './src/vendor/coloris.min.js'
 import { createGradientContainer } from './src/components/GradientContainer.js'
 import { createMarker } from './src/components/Marker.js'
-import { gradientStops } from './src/store.js'
+import { gradientStops } from './src/lib/gradient-stops.js'
 import { createSavedGradients } from './src/components/SavedGradients.js'
 
 const markers = gradientStops.map((stop, index) => createMarker(`${stop.position}%`, stop.color, index));

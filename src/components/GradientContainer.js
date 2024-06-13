@@ -1,4 +1,4 @@
-import { gradientStops } from './../store.js';
+import { gradientStops } from '../lib/gradient-stops.js';
 
 export function createGradientContainer(markerHTML) {
   return `

@@ -1,8 +1,8 @@
-import { init } from './../init.js';
+import { init } from '../lib/init.js';
 import { createTrashIcon } from './TrashIcon.js';
 import { createColorPicker } from './ColorPicker.js';
 import { getGradientRectangle } from './GradientContainer.js';
-import { updateGradientStops } from '../store.js';
+import { updateGradientStops } from '../lib/gradient-stops.js';
 import { handleMouseDown } from '../main.js';
 
 export function createMarker(position, color, index) {

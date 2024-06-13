@@ -1,5 +1,5 @@
 import { updateMarkerIndices } from './Marker.js';
-import { updateGradientStops } from '../store.js';
+import { updateGradientStops } from '../lib/gradient-stops.js';
 import { updateGradient } from './GradientContainer.js';
 
 export function createTrashIcon() {

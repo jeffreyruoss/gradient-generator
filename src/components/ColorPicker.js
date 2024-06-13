@@ -1,4 +1,4 @@
-import { updateGradientStops } from './../store.js';
+import { updateGradientStops } from '../lib/gradient-stops.js';
 import { updateGradient } from './GradientContainer.js';
 import { createPencilIcon } from './PencilIcon.js';
 
