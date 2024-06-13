@@ -7,7 +7,7 @@
 }
 
 #gradient-rectangle {
-	margin-bottom: 70px;
+	margin-bottom: 96px;
 	position: relative;
 	border-radius: 7px;
 	border: 1px solid #ddd;
@@ -26,7 +26,7 @@
 
 .marker {
 	position: absolute;
-	top: 110%;
+	top: 105%;
 	transform: translateX(-50%);
 	border-left: 1px solid #ddd;
 	border-right: 1px solid #ddd;
@@ -53,9 +53,9 @@
 
 .trash {
 	position: absolute;
-	bottom: -40px;
-	right: 0;
-	width: 20px;
+	bottom: -68px;
+	left: -3px;
+	width: 24px;
 	height: 25px;
 	cursor: pointer;
 	opacity: 0;
@@ -110,14 +110,14 @@
 	content: '';
 	position: absolute;
 	left: -3px;
-	bottom: -15px;
+	bottom: -42px;
 	border-top: 2px solid #c8deff;
 	border-left: 1px solid #c8deff;
 	border-right: 1px solid #c8deff;
 	border-bottom: 1px solid #c8deff;
 	border-radius: 0 0 3px 3px;
 	width: 22px;
-	height: 19px;
+	height: 38px;
 	background: radial-gradient(circle, #bbb 30%, #c8deff 20%);
 	background-size: 6px 6px;
 	background-position: top center;

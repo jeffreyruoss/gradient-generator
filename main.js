@@ -1,6 +1,7 @@
 import './style.css'
 import './css/main.css'
 import './css/gradient-editor.css'
+import './css/saved-gradients.css'
 import './src/main.js'
 import './src/vendor/coloris.min.css'
 import './src/vendor/coloris.min.js'
@@ -10,13 +11,12 @@ import { gradientStops } from './src/store.js'
 import { createSavedGradients } from './src/components/SavedGradients.js'
 
 const markers = gradientStops.map((stop, index) => createMarker(`${stop.position}%`, stop.color, index));
-const gradientContainer = createGradientContainer(markers.join(''));
 
 document.querySelector('#app').innerHTML = `
   <div class="wrap">
     <div class="main">
-      <h1>Gradient Editor</h1>
-      ${gradientContainer}
+      <h1>Gradient Generator</h1>
+      ${createGradientContainer(markers.join(''))}
       ${createSavedGradients()}
     </div>
   </div>
