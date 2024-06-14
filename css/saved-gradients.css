@@ -1,3 +1,101 @@
 button.save-gradient {
 	background-color: #046C4E;
 }
+
+button.import-saved-gradients {
+	background-color: #2556DB;
+}
+
+button.export-saved-gradients {
+	background-color: #6C2BD9;
+
+}
+
+.saved-gradient {
+	margin-bottom: 15px;
+	padding: 10px 0;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	display: flex;
+	flex-direction: column;
+}
+
+@media (min-width: 768px) {
+	.saved-gradient {
+		flex-direction: row;
+	}
+}
+
+.saved-gradient-name {
+	margin-bottom: 5px;
+	display: flex;
+}
+
+.saved-gradient-name label {
+	margin-top: 10px;
+	color: #555;
+	font-size: 15px;
+}
+
+.saved-gradient-name input {
+	padding: 12px;
+	appearance: none;
+	background: transparent;
+	border: none;
+	color: #333;
+	font-size: 16px;
+}
+
+button.edit-saved-gradient-name {
+	margin-top: 8px;
+	margin-right: 5px;
+	padding: 0;
+	width: 20px;
+	height: 20px;
+	background-color: transparent;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+button.edit-saved-gradient-name svg {
+	fill: #787878;
+}
+
+.save-gradient-buttons {
+	margin-bottom: 5px;
+	display: flex;
+	justify-content: center;
+	gap: 5px;
+}
+
+button.load-saved-gradient,
+button.delete-saved-gradient {
+	padding: 0;
+	width: 30px;
+	height: 30px;
+	background-color: transparent;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.load-saved-gradient svg,
+.delete-saved-gradient svg {
+	width: 24px;
+	height: 24px;
+	fill: #fff;
+}
+
+button.load-saved-gradient {
+	background-color: #2556DB;
+}
+
+button.delete-saved-gradient {
+	background-color: #FF0000;
+}
+
+.saved-gradient-thumb {
+	width: 100%;
+	height: 40px;
+}

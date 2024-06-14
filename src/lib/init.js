@@ -3,6 +3,7 @@ import { initMarkers } from '../components/Marker/Marker.js';
 import { addMarker } from '../components/Marker/add-marker.js';
 import { initColorisPickers, initColorSwatches } from '../components/ColorPicker.js';
 import { initTrashButtons } from '../components/TrashIcon.js';
+import { saveGradientsInit } from '../components/SavedGradientsSection.js';
 
 let gradientRectangle;
 
@@ -14,6 +15,7 @@ export function init() {
 	initColorisPickers();
 	initColorSwatches();
 	initTrashButtons();
+	saveGradientsInit();
 
 	gradientRectangle.addEventListener('click', (event) => {
 		if (event.target !== gradientRectangle) {
