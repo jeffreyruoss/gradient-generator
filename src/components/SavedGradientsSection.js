@@ -1,4 +1,4 @@
-import { createSavedGradient } from './SavedGradient.js';
+import { createSavedGradient, editSavedGradientNameHandler, saveSavedGradientNameHandler } from './SavedGradient.js';
 
 let savedGradientsContainer;
 
@@ -25,4 +25,19 @@ export function saveGradientsInit() {
 function addSavedGradient() {
 	const savedGradient = createSavedGradient();
 	savedGradientsContainer.innerHTML += savedGradient;
+
+	const editSavedGradientName = savedGradientsContainer.lastElementChild.querySelector('.edit-saved-gradient-name');
+	editSavedGradientName.addEventListener('click', editSavedGradientNameHandler);
+
+	const saveSavedGradientName = savedGradientsContainer.lastElementChild.querySelector('.save-saved-gradient-name');
+	saveSavedGradientName.addEventListener('click', saveSavedGradientNameHandler);
+
+	const gradientName = savedGradientsContainer.lastElementChild.querySelector('.gradient-name');
+	gradientName.addEventListener('focus', () => {
+		saveSavedGradientName.style.opacity = '1';
+	});
+
+	gradientName.addEventListener('blur', () => {
+		saveSavedGradientName.style.opacity = '0';
+	});
 }
