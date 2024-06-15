@@ -6,7 +6,7 @@ export function createSavedGradients() {
 	return `
 		<div class="container">
 			<div class="saved-gradients-section">
-				<button class="save-gradient">SAVE</button>
+				<button class="save-gradient-button">SAVE</button>
 				<button class="import-saved-gradients">IMPORT</button>
 				<button class="export-saved-gradients">EXPORT</button>
 				<h2>Saved Gradients</h2>
@@ -18,21 +18,21 @@ export function createSavedGradients() {
 
 export function saveGradientsInit() {
 	savedGradientsContainer = document.querySelector('.saved-gradients-container');
-	const saveGradientButton = document.querySelector('.save-gradient');
+	const saveGradientButton = document.querySelector('.save-gradient-button');
 	saveGradientButton.addEventListener('click', addSavedGradient);
 }
 
 function addSavedGradient() {
-	const savedGradient = createSavedGradient();
-	savedGradientsContainer.innerHTML += savedGradient;
+	const savedGradientElement = document.createElement('div');
+	savedGradientElement.innerHTML = createSavedGradient();
 
-	const editSavedGradientName = savedGradientsContainer.lastElementChild.querySelector('.edit-saved-gradient-name');
+	const editSavedGradientName = savedGradientElement.querySelector('.edit-saved-gradient-name');
 	editSavedGradientName.addEventListener('click', editSavedGradientNameHandler);
 
-	const saveSavedGradientName = savedGradientsContainer.lastElementChild.querySelector('.save-saved-gradient-name');
+	const saveSavedGradientName = savedGradientElement.querySelector('.save-saved-gradient-name');
 	saveSavedGradientName.addEventListener('click', saveSavedGradientNameHandler);
 
-	const gradientName = savedGradientsContainer.lastElementChild.querySelector('.gradient-name');
+	const gradientName = savedGradientElement.querySelector('.gradient-name');
 	gradientName.addEventListener('focus', () => {
 		saveSavedGradientName.style.opacity = '1';
 	});
@@ -40,4 +40,6 @@ function addSavedGradient() {
 	gradientName.addEventListener('blur', () => {
 		saveSavedGradientName.style.opacity = '0';
 	});
+
+	savedGradientsContainer.appendChild(savedGradientElement);
 }

@@ -35,6 +35,7 @@ function savedGradientThumbBackground() {
 }
 
 export function editSavedGradientNameHandler() {
+	console.log('editSavedGradientNameHandler');
 	const savedGradient = this.closest('.saved-gradient');
 	const gradientName = savedGradient.querySelector('.gradient-name');
 	gradientName.focus();
