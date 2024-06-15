@@ -20,14 +20,34 @@ export function createSavedGradients() {
 export function saveGradientsInit() {
 	savedGradientsContainer = document.querySelector('.saved-gradients-container');
 	const saveGradientButton = document.querySelector('.save-gradient-button');
-	saveGradientButton.addEventListener('click', addSavedGradient);
+	saveGradientButton.addEventListener('click', saveGradientHandler);
 }
 
-function addSavedGradient() {
+function saveGradientHandler() {
+	addSavedGradientToUI();
+	saveSavedGradientsToLocalStorage();
+}
+
+function addSavedGradientToUI() {
 	const savedGradientElement = document.createElement('div');
 	savedGradientElement.innerHTML = createSavedGradient();
 
 	saveGradientNameInit(savedGradientElement);
 
 	savedGradientsContainer.appendChild(savedGradientElement);
+}
+
+function saveSavedGradientsToLocalStorage() {
+	const savedGradients = document.querySelectorAll('.saved-gradient');
+	const savedGradientsArray = [];
+
+	savedGradients.forEach(savedGradient => {
+		const gradientName = savedGradient.querySelector('.gradient-name').value;
+		const gradientStopsString = savedGradient.dataset.savedGradientStops;
+		const gradientStopsStringDoubleQuotes = gradientStopsString.replace(/'/g, '"');
+		const gradientStops = JSON.parse(gradientStopsStringDoubleQuotes);
+		savedGradientsArray.push({ name: gradientName, stops: gradientStops });
+	});
+
+	localStorage.setItem('gradient_generator_saved_gradients', JSON.stringify(savedGradientsArray));
 }
