@@ -12,8 +12,7 @@ button.export-saved-gradients {
 }
 
 .saved-gradient {
-	margin-bottom: 10px;
-	padding: 0;
+	padding: 0 0 7px 0;
 	border-top: 2px solid #eee;
 	display: flex;
 	flex-direction: column;

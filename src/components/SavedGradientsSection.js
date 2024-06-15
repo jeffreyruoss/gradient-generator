@@ -1,4 +1,5 @@
-import { createSavedGradient, editSavedGradientNameHandler, saveSavedGradientNameHandler } from './SavedGradient.js';
+import { createSavedGradient } from './SavedGradient/SavedGradient.js';
+import { saveGradientNameInit } from './SavedGradient/SavedGradientName.js';;
 
 let savedGradientsContainer;
 
@@ -26,20 +27,7 @@ function addSavedGradient() {
 	const savedGradientElement = document.createElement('div');
 	savedGradientElement.innerHTML = createSavedGradient();
 
-	const editSavedGradientName = savedGradientElement.querySelector('.edit-saved-gradient-name');
-	editSavedGradientName.addEventListener('click', editSavedGradientNameHandler);
-
-	const saveSavedGradientName = savedGradientElement.querySelector('.save-saved-gradient-name');
-	saveSavedGradientName.addEventListener('click', saveSavedGradientNameHandler);
-
-	const gradientName = savedGradientElement.querySelector('.gradient-name');
-	gradientName.addEventListener('focus', () => {
-		saveSavedGradientName.style.opacity = '1';
-	});
-
-	gradientName.addEventListener('blur', () => {
-		saveSavedGradientName.style.opacity = '0';
-	});
+	saveGradientNameInit(savedGradientElement);
 
 	savedGradientsContainer.appendChild(savedGradientElement);
 }
