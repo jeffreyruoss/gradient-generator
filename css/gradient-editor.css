@@ -35,7 +35,7 @@
 	display: flex;
 	align-items: center;
 	cursor: move;
-	background-color: #ffffff;
+	background-color: #eee;
 }
 
 .marker:hover .trash {
@@ -97,7 +97,7 @@
 	height: 0;
 	border-left: 10px solid transparent;
 	border-right: 10px solid transparent;
-	border-bottom: 18px solid #83a5d8;
+	border-bottom: 18px solid #bbb;
 	border-radius: 50px 0 0 0;
 	display: block;
 	position: absolute;
@@ -109,7 +109,7 @@
 	content: '';
 	position: absolute;
 	left: -3px;
-	bottom: -42px;
+	bottom: -41px;
 	border-top: 2px solid #c8deff;
 	border-left: 1px solid #c8deff;
 	border-right: 1px solid #c8deff;
