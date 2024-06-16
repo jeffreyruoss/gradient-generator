@@ -2,6 +2,7 @@ import { getGradientRectangle } from "../GradientContainer";
 import { autoSave } from "../../lib/auto-save";
 import { gradientStops } from "../../lib/gradient-stops";
 import { updateGradient } from "../GradientContainer";
+import { updatePercentInputValue } from "./PercentInput";
 
 function handleMouseMove(e, marker, startX) {
 	const position = Math.max(0, Math.min(100, ((e.clientX - startX) / marker.parentElement.offsetWidth) * 100));
@@ -14,6 +15,7 @@ function updateMarkerMove(marker, position) {
 	gradientStops[index].position = position;
 	marker.style.left = `${position}%`;
 	updateGradient(gradientRectangle);
+	updatePercentInputValue(marker, position);
 }
 
 function handleMouseUp(onMouseMove) {

@@ -1,5 +1,6 @@
 import { createTrashIcon } from '../TrashIcon.js';
 import { createColorPicker } from '../ColorPicker.js';
+import { createPercentInput } from './PercentInput.js';
 import { getGradientRectangle, updateGradient } from '../GradientContainer.js';
 import { updateGradientStops } from '../../lib/gradient-stops.js';
 import { initColorisPickers, initColorSwatches } from '../ColorPicker.js';
@@ -12,6 +13,7 @@ export function createMarker(position, color, index) {
 			${createTrashIcon()}
 			${createColorPicker(color)}
 			</div>
+			${createPercentInput(position)}
     </div>
   `;
 }
