@@ -1,5 +1,6 @@
 import { createSavedGradient } from './SavedGradient/SavedGradient.js';
-import { saveGradientNameInit } from './SavedGradient/SavedGradientName.js';;
+import { saveGradientNameInit } from './SavedGradient/SavedGradientName.js';
+import { deleteGradientInit } from './SavedGradient/DeleteSavedGradient.js';
 
 let savedGradientsContainer;
 
@@ -34,11 +35,12 @@ function addSavedGradientToUI() {
 	savedGradientElement.innerHTML = createSavedGradient();
 
 	saveGradientNameInit(savedGradientElement);
+	deleteGradientInit(savedGradientElement);
 
 	savedGradientsContainer.appendChild(savedGradientElement);
 }
 
-function saveSavedGradientsToLocalStorage() {
+export function saveSavedGradientsToLocalStorage() {
 	const savedGradients = document.querySelectorAll('.saved-gradient');
 	const savedGradientsArray = [];
 
@@ -62,6 +64,8 @@ function loadSavedGradientsFromLocalStorage() {
 			savedGradientsContainer.appendChild(savedGradientElement);
 			savedGradientElement.querySelector('.gradient-name').value = savedGradient.name;
 			savedGradientElement.dataset.savedGradientStops = JSON.stringify(savedGradient.stops);
+			saveGradientNameInit(savedGradientElement);
+			deleteGradientInit(savedGradientElement);
 		});
 	}
 }
