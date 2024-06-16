@@ -11,11 +11,18 @@ export function createSavedGradients() {
 				<button class="save-gradient-button">SAVE</button>
 				<button class="import-saved-gradients">IMPORT</button>
 				<button class="export-saved-gradients">EXPORT</button>
-				<h2>Saved Gradients</h2>
 				<div class="saved-gradients-container"></div>
 			</div>
 		</div>
 	`
+}
+
+function addSavedGradientsHeading() {
+	if (document.querySelector('.saved-gradients-heading')) return;
+	const savedGradientsHeading = document.createElement('h2');
+	savedGradientsHeading.textContent = 'Saved Gradients';
+	savedGradientsHeading.classList.add('saved-gradients-heading');
+	savedGradientsContainer.insertAdjacentElement('beforebegin', savedGradientsHeading);
 }
 
 export function saveGradientsInit() {
@@ -23,6 +30,11 @@ export function saveGradientsInit() {
 	const saveGradientButton = document.querySelector('.save-gradient-button');
 	saveGradientButton.addEventListener('click', saveGradientHandler);
 	loadSavedGradientsFromLocalStorage();
+
+	const savedGradientsLocalStorage = localStorage.getItem('gradient_generator_saved_gradients');
+	if (savedGradientsLocalStorage && savedGradientsLocalStorage !== '[]') {
+		addSavedGradientsHeading();
+	}
 }
 
 function saveGradientHandler() {
@@ -36,6 +48,7 @@ function addSavedGradientToUI() {
 	const savedGradientElement = savedGradientsContainer.lastElementChild;
 	saveGradientNameInit(savedGradientElement);
 	deleteGradientInit(savedGradientElement);
+	addSavedGradientsHeading();
 }
 
 export function saveSavedGradientsToLocalStorage() {

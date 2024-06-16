@@ -17,4 +17,11 @@ function deleteGradientHandler(event) {
 	const savedGradientElement = event.target.closest('.saved-gradient');
 	savedGradientElement.remove();
 	saveSavedGradientsToLocalStorage();
+
+	// if no saved gradients left, remove heading
+	const savedGradients = document.querySelectorAll('.saved-gradient');
+	if (savedGradients.length === 0) {
+		const savedGradientsHeading = document.querySelector('.saved-gradients-heading');
+		savedGradientsHeading.remove();
+	}
 }
