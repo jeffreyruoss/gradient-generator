@@ -21,6 +21,7 @@ export function saveGradientsInit() {
 	savedGradientsContainer = document.querySelector('.saved-gradients-container');
 	const saveGradientButton = document.querySelector('.save-gradient-button');
 	saveGradientButton.addEventListener('click', saveGradientHandler);
+	loadSavedGradientsFromLocalStorage();
 }
 
 function saveGradientHandler() {
@@ -50,4 +51,17 @@ function saveSavedGradientsToLocalStorage() {
 	});
 
 	localStorage.setItem('gradient_generator_saved_gradients', JSON.stringify(savedGradientsArray));
+}
+
+function loadSavedGradientsFromLocalStorage() {
+	const savedGradientsArray = JSON.parse(localStorage.getItem('gradient_generator_saved_gradients'));
+	if (savedGradientsArray) {
+		savedGradientsArray.forEach(savedGradient => {
+			const savedGradientElement = document.createElement('div');
+			savedGradientElement.innerHTML = createSavedGradient(savedGradient.stops);
+			savedGradientsContainer.appendChild(savedGradientElement);
+			savedGradientElement.querySelector('.gradient-name').value = savedGradient.name;
+			savedGradientElement.dataset.savedGradientStops = JSON.stringify(savedGradient.stops);
+		});
+	}
 }
