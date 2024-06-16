@@ -31,13 +31,11 @@ function saveGradientHandler() {
 }
 
 function addSavedGradientToUI() {
-	const savedGradientElement = document.createElement('div');
-	savedGradientElement.innerHTML = createSavedGradient();
-
+	const savedGradientHTML = createSavedGradient();
+	savedGradientsContainer.insertAdjacentHTML('beforeend', savedGradientHTML);
+	const savedGradientElement = savedGradientsContainer.lastElementChild;
 	saveGradientNameInit(savedGradientElement);
 	deleteGradientInit(savedGradientElement);
-
-	savedGradientsContainer.appendChild(savedGradientElement);
 }
 
 export function saveSavedGradientsToLocalStorage() {
@@ -45,6 +43,9 @@ export function saveSavedGradientsToLocalStorage() {
 	const savedGradientsArray = [];
 
 	savedGradients.forEach(savedGradient => {
+		const random5characters = Math.random().toString(36).substring(2, 7);
+		console.log(random5characters + savedGradient.dataset.savedGradientStops);
+
 		const gradientName = savedGradient.querySelector('.gradient-name').value;
 		const gradientStopsString = savedGradient.dataset.savedGradientStops;
 		const gradientStopsStringDoubleQuotes = gradientStopsString.replace(/'/g, '"');
@@ -59,9 +60,9 @@ function loadSavedGradientsFromLocalStorage() {
 	const savedGradientsArray = JSON.parse(localStorage.getItem('gradient_generator_saved_gradients'));
 	if (savedGradientsArray) {
 		savedGradientsArray.forEach(savedGradient => {
-			const savedGradientElement = document.createElement('div');
-			savedGradientElement.innerHTML = createSavedGradient(savedGradient.stops);
-			savedGradientsContainer.appendChild(savedGradientElement);
+			const savedGradientHTML = createSavedGradient(savedGradient.stops);
+			savedGradientsContainer.insertAdjacentHTML('beforeend', savedGradientHTML);
+			const savedGradientElement = savedGradientsContainer.lastElementChild;
 			savedGradientElement.querySelector('.gradient-name').value = savedGradient.name;
 			savedGradientElement.dataset.savedGradientStops = JSON.stringify(savedGradient.stops);
 			saveGradientNameInit(savedGradientElement);
