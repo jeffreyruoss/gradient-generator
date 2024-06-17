@@ -11,7 +11,7 @@ export function addMarker(event) {
 	let index = closestMarker.dataset.stopIndex + 1;
 	let position = Math.round((x / gradientRectangle.offsetWidth) * 100) + '%';
 
-	createAndInsertMarker(closestMarker, color, index, position);
+	createAndInsertMarker(closestMarker, color, index, position, x);
 	updateUI();
 }
 
@@ -19,18 +19,20 @@ export function getClosestMarker(x, markers) {
 	let closestMarker = null;
 	let closestDistance = Infinity;
 	Array.from(markers).forEach(marker => {
-		if (marker.offsetLeft < x) {
-			let distance = Math.abs(marker.offsetLeft - x);
-			if (distance < closestDistance) {
-				closestMarker = marker;
-				closestDistance = distance;
-			}
+		let distance = Math.abs(marker.offsetLeft - x);
+		if (distance < closestDistance) {
+			closestMarker = marker;
+			closestDistance = distance;
 		}
 	});
 	return closestMarker;
 }
 
-export function createAndInsertMarker(closestMarker, color, index, position) {
+export function createAndInsertMarker(closestMarker, color, index, position, x) {
 	const marker = createMarker(position, color, index);
-	closestMarker.insertAdjacentHTML('afterend', marker);
+	if (x < closestMarker.offsetLeft) {
+		closestMarker.insertAdjacentHTML('beforebegin', marker);
+	} else {
+		closestMarker.insertAdjacentHTML('afterend', marker);
+	}
 }
