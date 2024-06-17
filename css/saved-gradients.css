@@ -12,7 +12,7 @@ button.export-saved-gradients {
 }
 
 .saved-gradient {
-	padding: 0 0 7px 0;
+	padding: 0 0 9px 0;
 	border-top: 2px solid #eee;
 	display: flex;
 	flex-direction: column;
@@ -24,7 +24,7 @@ button.export-saved-gradients {
 
 @media (min-width: 768px) {
 	.saved-gradient {
-		margin-bottom: 6px;
+		margin-bottom: 0px;
 		flex-direction: row;
 	}
 }
@@ -41,7 +41,7 @@ button.export-saved-gradients {
 }
 
 .saved-gradient-name {
-	padding-top: 7px;
+	padding-top: 4px;
 	margin-bottom: 5px;
 	position: relative;
 	display: flex;
@@ -62,7 +62,7 @@ button.export-saved-gradients {
 }
 
 .saved-gradient-name input {
-	padding: 10px 8px 6px 30px;
+	padding: 8px 8px 5px 30px;
 	border: none;
 }
 
