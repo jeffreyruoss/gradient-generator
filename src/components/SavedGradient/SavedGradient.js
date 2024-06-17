@@ -23,8 +23,6 @@ export function createSavedGradient(savedGradientStops) {
 
 function savedGradientStopsDataString() {
 	const gradientStopsString = JSON.stringify(gradientStops);
-	// replace all double quotes with single quotes
 	const gradientStopsStringSingleQuotes = gradientStopsString.replace(/"/g, "'");
-	// console.log('gradientStopsStringSingleQuotes:', gradientStopsStringSingleQuotes);
 	return gradientStopsStringSingleQuotes;
 }

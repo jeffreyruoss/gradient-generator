@@ -1,6 +1,6 @@
 import { createTrashIcon } from '../TrashIcon.js';
 import { createColorPicker } from '../ColorPicker.js';
-import { createPercentInput } from './PercentInput.js';
+import { createPercentInput, initPercentInput } from './PercentInput.js';
 import { getGradientRectangle, updateGradient } from '../GradientContainer.js';
 import { updateGradientStops } from '../../lib/gradient-stops.js';
 import { initColorisPickers, initColorSwatches } from '../ColorPicker.js';
@@ -21,10 +21,17 @@ export function createMarker(position, color, index) {
 export function initMarkers() {
 	const gradientRectangle = getGradientRectangle();
 	const markers = gradientRectangle.getElementsByClassName('marker');
-	Array.from(markers).forEach((marker, index) => {
-		marker.dataset.stopIndex = index;
-		const startX = gradientRectangle.offsetLeft;
-		marker.addEventListener('mousedown', (event) => handleMouseDown(event, marker, startX));
+	Array.from(markers).forEach((marker, index) => initMarker(marker, index, gradientRectangle));
+}
+
+function initMarker(marker, index, gradientRectangle) {
+	marker.dataset.stopIndex = index;
+	const startX = gradientRectangle.offsetLeft;
+	marker.addEventListener('mousedown', (event) => {
+		if (!event.target.classList.contains('percent-input')) {
+			event.preventDefault();
+		}
+		handleMouseDown(event, marker, startX);
 	});
 }
 
@@ -39,6 +46,7 @@ export function updateUI() {
 	updateMarkerIndices();
 	updateGradientStops();
 	initMarkers();
+	initPercentInput();
 	initColorSwatches();
 	initColorisPickers();
 	initTrashButtons();

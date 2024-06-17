@@ -56,9 +56,6 @@ export function saveSavedGradientsToLocalStorage() {
 	const savedGradientsArray = [];
 
 	savedGradients.forEach(savedGradient => {
-		const random5characters = Math.random().toString(36).substring(2, 7);
-		console.log(random5characters + savedGradient.dataset.savedGradientStops);
-
 		const gradientName = savedGradient.querySelector('.gradient-name').value;
 		const gradientStopsString = savedGradient.dataset.savedGradientStops;
 		const gradientStopsStringDoubleQuotes = gradientStopsString.replace(/'/g, '"');

@@ -6,7 +6,7 @@
 }
 
 #gradient-rectangle {
-	margin-bottom: 150px;
+	margin-bottom: 146px;
 	position: relative;
 	border-radius: 10px;
 	border: 10px solid #eee;
@@ -55,23 +55,25 @@
 }
 
 .percent-input {
-	opacity: 0;
+	opacity: 0.3;
 	transition: opacity 0.3s;
 	position: absolute;
-	left: -9px;
+	left: -11px;
 	bottom: -80px;
 	width: 18px;
+	width: 24px;
 	font-size: 14px;
+	text-align: center;
 }
 
 .trash {
 	position: absolute;
-	bottom: -105px;
+	bottom: -107px;
 	left: -3px;
 	width: 24px;
 	height: 25px;
 	cursor: pointer;
-	opacity: 0;
+	opacity: 0.3;
 	transition: opacity 0.4s;
 }
 

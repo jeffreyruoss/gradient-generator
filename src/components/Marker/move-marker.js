@@ -9,7 +9,7 @@ function handleMouseMove(e, marker, startX) {
 	updateMarkerMove(marker, position);
 }
 
-function updateMarkerMove(marker, position) {
+export function updateMarkerMove(marker, position) {
 	const gradientRectangle = getGradientRectangle();
 	const index = marker.dataset.stopIndex;
 	gradientStops[index].position = position;
