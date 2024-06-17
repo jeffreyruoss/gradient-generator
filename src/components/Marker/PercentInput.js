@@ -1,3 +1,4 @@
+import { autoSave } from '../../lib/auto-save';
 import { updateMarkerMove } from './move-marker';
 
 export function createPercentInput(value) {
@@ -31,6 +32,7 @@ function handleInputSubmit(event, marker) {
 	if (event.type === 'blur' || event.key === 'Enter') {
 		const position = Math.max(0, Math.min(100, parseFloat(event.target.value)));
 		updateMarkerMove(marker, position);
+		autoSave();
 	}
 }
 

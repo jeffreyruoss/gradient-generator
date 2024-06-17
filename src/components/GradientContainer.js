@@ -35,5 +35,4 @@ export function updateGradient() {
 function updateWrapBgGradient(gradientString) {
   const wrap = document.querySelector('.wrap');
   wrap.style.background = `linear-gradient(to right, ${gradientString})`;
-
 }
