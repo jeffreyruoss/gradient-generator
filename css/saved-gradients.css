@@ -62,18 +62,14 @@ button.export-saved-gradients {
 }
 
 .saved-gradient-name input {
-	padding: 9px 8px 7px 30px;
-	appearance: none;
-	background: transparent;
+	padding: 10px 8px 6px 30px;
 	border: none;
-	color: #333;
-	font-size: 16px;
 }
 
 button.edit-saved-gradient-name {
 	position: absolute;
 	left: 50px;
-	margin-top: 7px;
+	margin-top: 8px;
 	margin-right: 5px;
 	padding: 0;
 	width: 20px;

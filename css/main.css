@@ -124,3 +124,17 @@ button:focus,
 button:focus-visible {
 	outline: 4px auto -webkit-focus-ring-color;
 }
+
+input {
+	appearance: none;
+	border: 2px solid #ccc;
+	border-radius: 5px;
+	background-color: #fff;
+	padding: 7px;
+	color: #555;
+	font-size: 15px;
+}
+
+input:focus {
+	outline: 2px solid #ddd;
+}
