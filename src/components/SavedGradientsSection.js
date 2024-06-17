@@ -1,6 +1,7 @@
 import { createSavedGradient } from './SavedGradient/SavedGradient.js';
 import { saveGradientNameInit } from './SavedGradient/SavedGradientName.js';
 import { deleteGradientInit } from './SavedGradient/DeleteSavedGradient.js';
+import { loadSavedGradientInit } from './SavedGradient/LoadSavedGradient.js';
 
 let savedGradientsContainer;
 
@@ -47,6 +48,7 @@ function addSavedGradientToUI() {
 	savedGradientsContainer.insertAdjacentHTML('beforeend', savedGradientHTML);
 	const savedGradientElement = savedGradientsContainer.lastElementChild;
 	saveGradientNameInit(savedGradientElement);
+	loadSavedGradientInit(savedGradientElement);
 	deleteGradientInit(savedGradientElement);
 	addSavedGradientsHeading();
 }
@@ -76,6 +78,7 @@ function loadSavedGradientsFromLocalStorage() {
 			savedGradientElement.querySelector('.gradient-name').value = savedGradient.name;
 			savedGradientElement.dataset.savedGradientStops = JSON.stringify(savedGradient.stops);
 			saveGradientNameInit(savedGradientElement);
+			loadSavedGradientInit(savedGradientElement);
 			deleteGradientInit(savedGradientElement);
 		});
 	}

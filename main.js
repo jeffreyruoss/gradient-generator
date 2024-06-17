@@ -6,7 +6,7 @@ import './src/main.js'
 import './src/vendor/coloris.min.css'
 import './src/vendor/coloris.min.js'
 import { createGradientContainer } from './src/components/GradientContainer.js'
-import { createMarker } from './src/components/Marker/Marker.js'
+import { createMarker, createMarkers } from './src/components/Marker/Marker.js'
 import { gradientStops } from './src/lib/gradient-stops.js'
 import { createSavedGradients } from './src/components/SavedGradientsSection.js'
 
@@ -16,8 +16,8 @@ document.querySelector('#app').innerHTML = `
   <div class="wrap">
     <div class="main">
       <h1>Gradient Generator</h1>
-      ${createGradientContainer(markers.join(''))}
+      ${createGradientContainer(createMarkers())}
       ${createSavedGradients()}
-    </div>
-  </div>
-`;
+    </div >
+  </div >
+  `;
