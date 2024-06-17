@@ -31,18 +31,25 @@
 	border-left: 1px solid #ddd;
 	border-right: 1px solid #ddd;
 	width: 18px;
-	height: 50px;
+	height: 120px;
 	display: flex;
 	align-items: center;
 	cursor: move;
 	background-color: #eee;
+	transition: opacity 0.4s, box-shadow 0.4s, border 0.4s;
 }
 
-.marker:hover .trash {
+.marker.selected {
 	opacity: 1;
+	background-color: #fff;
 }
 
-.marker:hover .pencil svg:nth-child(2) {
+.marker:hover .trash,
+.marker.selected .trash,
+.marker:hover .pencil svg:nth-child(2),
+.marker.selected .pencil svg:nth-child(2),
+.marker:hover .percent-input,
+.marker.selected .percent-input {
 	opacity: 1;
 }
 
@@ -50,40 +57,23 @@
 	opacity: 0.6;
 }
 
-.marker:hover .percent-input {
-	opacity: 1;
-}
-
-.percent-input {
-	opacity: 0.3;
-	transition: opacity 0.3s;
+/* triangle */
+.marker:before {
+	content: "";
+	width: 0;
+	height: 0;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 18px solid #999;
+	border-radius: 50px 0 0 0;
+	display: block;
 	position: absolute;
-	left: -11px;
-	bottom: -80px;
-	width: 18px;
-	width: 24px;
-	font-size: 14px;
-	text-align: center;
+	top: -18px;
+	transition: border-bottom 0.3s;
 }
 
-.trash {
-	position: absolute;
-	bottom: -107px;
-	left: -3px;
-	width: 24px;
-	height: 25px;
-	cursor: pointer;
-	opacity: 0.3;
-	transition: opacity 0.4s;
-}
-
-.trash svg {
-	transition: fill 0.4s;
-	fill: rgb(235, 166, 166);
-}
-
-.trash svg:hover {
-	fill: rgb(255, 0, 0);
+.marker.selected:before {
+	border-bottom: 18px solid #bbb;
 }
 
 .pencil svg {
@@ -106,44 +96,9 @@
 	opacity: 1;
 }
 
-/* triangle */
-.marker:before {
-	content: "";
-	width: 0;
-	height: 0;
-	border-left: 10px solid transparent;
-	border-right: 10px solid transparent;
-	border-bottom: 18px solid #bbb;
-	border-radius: 50px 0 0 0;
-	display: block;
-	position: absolute;
-	top: -18px;
-}
-
-/* grab handle */
-.marker:after {
-	content: '';
-	position: absolute;
-	left: -3px;
-	bottom: -41px;
-	border-top: 2px solid #c8deff;
-	border-left: 1px solid #c8deff;
-	border-right: 1px solid #c8deff;
-	border-bottom: 1px solid #c8deff;
-	border-radius: 0 0 3px 3px;
-	width: 22px;
-	height: 38px;
-	background: radial-gradient(circle, #bbb 30%, #c8deff 20%);
-	background-size: 6px 6px;
-	background-position: top center;
-}
-
-.color-value {
-	background-color: #000;
-}
-
 .color-swatch {
 	position: absolute;
+	top: 10px;
 	left: -4px;
 	width: 24px;
 	height: 24px;
@@ -155,4 +110,75 @@
 	width: 1px;
 	position: absolute;
 	opacity: 0;
+}
+
+/* grab handle */
+.marker:after {
+	content: '';
+	position: absolute;
+	left: -3px;
+	top: 45px;
+	border-top: 2px solid #c8deff;
+	border-left: 1px solid #c8deff;
+	border-right: 1px solid #c8deff;
+	border-bottom: 1px solid #c8deff;
+	border-radius: 0 0 3px 3px;
+	width: 22px;
+	height: 38px;
+	background: radial-gradient(circle, #68a4ff 30%, #bbd6ff 20%);
+	background-size: 6px 6px;
+	background-position: top center;
+	filter: saturate(0.5);
+}
+
+.marker.selected:after {
+	filter: saturate(1);
+}
+
+.percent-input-container {
+	border-radius: 5px;
+	width: 40px;
+	height: 32px;
+	background-color: #fff;
+	position: absolute;
+	left: -11px;
+	top: 95px;
+}
+
+.percent-input {
+	opacity: 0.3;
+	transition: opacity 0.3s;
+	width: 18px;
+	width: 24px;
+	font-size: 14px;
+	text-align: center;
+	margin-top: -1px;
+	margin-left: -1px;
+}
+
+.trash {
+	border-radius: 100%;
+	position: absolute;
+	top: 135px;
+	left: -2px;
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+	transition: opacity 0.3s;
+	opacity: 0.3;
+}
+
+.trash svg {
+	border-radius: 10px;
+	transition: fill 0.3s;
+	fill: rgb(255, 0, 0);
+	position: absolute;
+	top: -3px;
+	left: -3px;
+	width: 26px;
+	height: 26px;
+}
+
+.trash svg:hover {
+	fill: rgb(255, 136, 136);
 }

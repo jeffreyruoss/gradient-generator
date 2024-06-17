@@ -28,11 +28,19 @@ function initMarker(marker, index, gradientRectangle) {
 	marker.dataset.stopIndex = index;
 	const startX = gradientRectangle.offsetLeft;
 	marker.addEventListener('mousedown', (event) => {
+		markerSelect(marker);
 		if (!event.target.classList.contains('percent-input')) {
 			event.preventDefault();
 		}
 		handleMouseDown(event, marker, startX);
 	});
+}
+
+function markerSelect(marker) {
+	const markers = document.getElementsByClassName('marker');
+	Array.from(markers).forEach((marker) => marker.classList.remove('selected'));
+	marker.classList.add('selected');
+	console.log(marker);
 }
 
 export function updateMarkerIndices() {

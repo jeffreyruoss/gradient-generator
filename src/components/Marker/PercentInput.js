@@ -4,7 +4,9 @@ export function createPercentInput(value) {
 	value = value.replace('%', '');
 	value = Math.round(parseFloat(value));
 	return `
-		<input class="percent-input" min="0" max="100" value="${value}" />
+		<div class="percent-input-container">
+			<input class="percent-input" min="0" max="100" value="${value}" />
+		</div>
 	`;
 }
 
