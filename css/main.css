@@ -68,6 +68,7 @@ body {
 	width: 100%;
 	max-width: 641px;
 	background-color: #ffffffa1;
+	box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1), 0 0 0 2px rgba(0, 0, 0, 0.05) inset;
 }
 
 @media (min-width: 768px) {
@@ -83,6 +84,7 @@ body {
 	background-color: #fff;
 	border-radius: 15px;
 	padding: 20px;
+	box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
 }
 
 .main .container:last-child {
