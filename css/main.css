@@ -72,7 +72,6 @@ body {
 	animation: fadeInUp 3s ease;
 }
 
-/* fade in and up on page load animation*/
 @keyframes fadeInUp {
 	from {
 		opacity: 0;

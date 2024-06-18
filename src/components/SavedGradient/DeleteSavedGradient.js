@@ -1,4 +1,4 @@
-import { saveSavedGradientsToLocalStorage } from './../SavedGradientsSection/SavedGradientsSection.js';
+import { saveSavedGradientsToLocalStorage } from '../SavedGradientsSection/save-gradient.js';
 
 export function createDeleteSavedGradientButton() {
 	return `
