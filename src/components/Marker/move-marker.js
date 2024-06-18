@@ -7,16 +7,16 @@ import { updatePercentInputValue } from "./PercentInput";
 
 function handleMouseMove(e, marker, startX) {
 	const position = Math.max(0, Math.min(100, ((e.clientX - startX) / marker.parentElement.offsetWidth) * 100));
+	const gradientRectangle = getGradientRectangle();
 	updateMarkerMove(marker, position);
 	reorderMarkers();
+	updateGradient(gradientRectangle);
 }
 
 export function updateMarkerMove(marker, position) {
-	const gradientRectangle = getGradientRectangle();
 	const index = marker.dataset.stopIndex;
 	gradientStops[index].position = position;
 	marker.style.left = `${position}%`;
-	updateGradient(gradientRectangle);
 	updatePercentInputValue(marker, position);
 }
 
