@@ -28,9 +28,9 @@
 	position: absolute;
 	top: 105%;
 	transform: translateX(-50%);
-	border-left: 1px solid #ddd;
-	border-right: 1px solid #ddd;
-	width: 18px;
+	border-left: 2px solid #ddd;
+	border-right: 2px solid #ddd;
+	width: 16px;
 	height: 120px;
 	display: flex;
 	align-items: center;
@@ -68,6 +68,7 @@
 	border-radius: 50px 0 0 0;
 	display: block;
 	position: absolute;
+	left: -2px;
 	top: -18px;
 	transition: border-bottom 0.3s;
 }
@@ -102,7 +103,8 @@
 	left: -4px;
 	width: 24px;
 	height: 24px;
-	border: 1px solid #ccc;
+	box-shadow: 0 0 0 2px #cecfd2 inset;
+	border-radius: 1px;
 	cursor: pointer;
 }
 
@@ -116,13 +118,13 @@
 .marker:after {
 	content: '';
 	position: absolute;
-	left: -3px;
-	top: 45px;
-	border-top: 2px solid #c8deff;
-	border-left: 1px solid #c8deff;
-	border-right: 1px solid #c8deff;
-	border-bottom: 1px solid #c8deff;
-	border-radius: 0 0 3px 3px;
+	left: -5px;
+	top: 43px;
+	border-top: 2px solid #aac3e9;
+	border-left: 2px solid #aac3e9;
+	border-right: 2px solid #aac3e9;
+	border-bottom: 2px solid #aac3e9;
+	border-radius: 3px;
 	width: 22px;
 	height: 38px;
 	background: radial-gradient(circle, #68a4ff 30%, #bbd6ff 20%);
@@ -141,13 +143,14 @@
 	height: 32px;
 	background-color: #fff;
 	position: absolute;
-	left: -11px;
+	left: -12px;
 	top: 95px;
 }
 
 .percent-input {
 	opacity: 0.3;
 	transition: opacity 0.3s;
+	padding: 7px 5px;
 	width: 18px;
 	width: 24px;
 	font-size: 14px;

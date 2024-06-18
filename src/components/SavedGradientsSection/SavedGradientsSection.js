@@ -12,9 +12,11 @@ export function createSavedGradients() {
 	return `
 		<div class="container">
 			<div class="saved-gradients-section">
-				<button class="save-gradient-button">SAVE</button>
-				<button class="import-saved-gradients">IMPORT</button>
-				<button class="export-saved-gradients">EXPORT</button>
+				<div class="saved-gradients-buttons">
+					<button class="save-gradient-button">SAVE</button>
+					<button class="import-saved-gradients">IMPORT</button>
+					<button class="export-saved-gradients">EXPORT</button>
+				</div>
 				<div class="saved-gradients-container"></div>
 			</div>
 		</div>
