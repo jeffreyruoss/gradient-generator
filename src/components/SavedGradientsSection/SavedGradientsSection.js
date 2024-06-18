@@ -3,6 +3,7 @@ import { saveGradientNameInit } from '../SavedGradient/SavedGradientName.js';
 import { deleteGradientInit } from '../SavedGradient/DeleteSavedGradient.js';
 import { loadSavedGradientInit } from '../SavedGradient/LoadSavedGradient.js';
 import { saveGradientHandler } from './save-gradient.js';
+import { exportSavedGradientsHandler } from './export.js';
 
 export let savedGradientsContainer;
 
@@ -31,6 +32,10 @@ export function saveGradientsInit() {
 	savedGradientsContainer = document.querySelector('.saved-gradients-container');
 	const saveGradientButton = document.querySelector('.save-gradient-button');
 	saveGradientButton.addEventListener('click', saveGradientHandler);
+	// const importSavedGradientsButton = document.querySelector('.import-saved-gradients');
+	// importSavedGradientsButton.addEventListener('click', importSavedGradientsHandler);
+	const exportSavedGradientsButton = document.querySelector('.export-saved-gradients');
+	exportSavedGradientsButton.addEventListener('click', exportSavedGradientsHandler);
 	loadSavedGradientsFromLocalStorage();
 
 	const savedGradientsLocalStorage = localStorage.getItem('gradient_generator_saved_gradients');
