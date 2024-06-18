@@ -34,7 +34,7 @@ export function handleMouseDown(event, marker, startX) {
 	document.addEventListener('mouseup', onMouseUp);
 }
 
-function reorderMarkers() {
+export function reorderMarkers() {
 	const gradientRectangle = getGradientRectangle();
 	const markers = Array.from(gradientRectangle.getElementsByClassName('marker'));
 
