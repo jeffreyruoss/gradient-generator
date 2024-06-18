@@ -5,9 +5,9 @@ import { updateMarkerIndices } from "./Marker"
 import { updateGradient } from "../GradientContainer";
 import { updatePercentInputValue } from "./PercentInput";
 
-function handleMouseMove(e, marker, startX) {
-	const position = Math.max(0, Math.min(100, ((e.clientX - startX) / marker.parentElement.offsetWidth) * 100));
+function handleMouseMove(e, marker) {
 	const gradientRectangle = getGradientRectangle();
+	const position = Math.max(0, Math.min(100, ((e.clientX - gradientRectangle.getBoundingClientRect().left) / gradientRectangle.offsetWidth) * 100));
 	updateMarkerMove(marker, position);
 	reorderMarkers();
 	updateGradient(gradientRectangle);
