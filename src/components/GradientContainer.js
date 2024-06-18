@@ -1,11 +1,12 @@
 import { gradientStops } from '../lib/gradient-stops.js';
+import { createMarkers } from './Marker/Marker.js';
 
-export function createGradientContainer(markerHTML) {
+export function createGradientContainer() {
   return `
     <div class="container">
       <div id="gradient-container">
         <div id="gradient-rectangle">
-          ${markerHTML}
+          ${createMarkers()}
         </div>
       </div>
     </div>
