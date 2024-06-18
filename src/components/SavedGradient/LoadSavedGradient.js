@@ -1,7 +1,8 @@
-import { setGradientStops, updateGradientStops } from "../../lib/gradient-stops";
+import { autoSave } from "../../lib/auto-save";
+import { setGradientStops } from "../../lib/gradient-stops";
 import { initColorisPickers, initColorSwatches } from "../ColorPicker";
 import { getGradientRectangle, initGradientRectangle, updateGradient } from "../GradientContainer";
-import { clearMarkers, createMarkers, initMarkers, updateMarkerIndices, updateUI } from "../Marker/Marker";
+import { clearMarkers, createMarkers, initMarkers } from "../Marker/Marker";
 import { initPercentInput } from "../Marker/PercentInput";
 import { initTrashButtons } from "../TrashIcon";
 
@@ -43,4 +44,5 @@ function loadSavedGradient(savedGradientElement) {
 	initColorSwatches();
 	initColorisPickers();
 	initTrashButtons();
+	autoSave();
 }
