@@ -1,9 +1,5 @@
 export function importSavedGradientsHandler() {
-	const importSavedGradientsInput = document.createElement('input');
-	importSavedGradientsInput.type = 'file';
-	importSavedGradientsInput.accept = '.json';
-	importSavedGradientsInput.addEventListener('change', importSavedGradients);
-	importSavedGradientsInput.click();
+	importSavedGradientsConfirmation();
 }
 
 function importSavedGradients() {
@@ -15,4 +11,16 @@ function importSavedGradients() {
 		window.location.reload();
 	}
 	reader.readAsText(file);
+}
+
+function importSavedGradientsConfirmation() {
+	const message = 'Are you sure you want to import saved gradients? This will overwrite the current saved gradients.';
+	const confirmImport = confirm(message);
+	if (confirmImport) {
+		const importSavedGradientsInput = document.createElement('input');
+		importSavedGradientsInput.type = 'file';
+		importSavedGradientsInput.accept = '.json';
+		importSavedGradientsInput.addEventListener('change', importSavedGradients);
+		importSavedGradientsInput.click();
+	}
 }
