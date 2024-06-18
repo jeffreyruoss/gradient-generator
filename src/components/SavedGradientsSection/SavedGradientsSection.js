@@ -1,7 +1,7 @@
-import { createSavedGradient } from './SavedGradient/SavedGradient.js';
-import { saveGradientNameInit } from './SavedGradient/SavedGradientName.js';
-import { deleteGradientInit } from './SavedGradient/DeleteSavedGradient.js';
-import { loadSavedGradientInit } from './SavedGradient/LoadSavedGradient.js';
+import { createSavedGradient } from '../SavedGradient/SavedGradient.js';
+import { saveGradientNameInit } from '../SavedGradient/SavedGradientName.js';
+import { deleteGradientInit } from '../SavedGradient/DeleteSavedGradient.js';
+import { loadSavedGradientInit } from '../SavedGradient/LoadSavedGradient.js';
 
 let savedGradientsContainer;
 

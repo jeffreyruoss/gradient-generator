@@ -6,7 +6,7 @@ import './src/vendor/coloris.min.css'
 import './src/vendor/coloris.min.js'
 import { init } from './src/lib/init.js';
 import { createGradientContainer } from './src/components/GradientContainer.js'
-import { createSavedGradients } from './src/components/SavedGradientsSection.js'
+import { createSavedGradients } from './src/components/SavedGradientsSection/SavedGradientsSection.js'
 
 document.querySelector('#app').innerHTML = `
   <div class="wrap">
