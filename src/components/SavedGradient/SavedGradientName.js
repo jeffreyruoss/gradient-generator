@@ -1,3 +1,6 @@
+import { saveSavedGradientsToLocalStorage } from "../SavedGradientsSection/save-gradient";
+import lottie from 'lottie-web';
+
 export function createSavedGradientName() {
 	return `
 		<div class="saved-gradient-name">
@@ -6,11 +9,40 @@ export function createSavedGradientName() {
 			</button>
 			<label>Name: </label>
 			<input type="text" class="gradient-name" value="Gradient #${savedGradientNameNumber()}">
+			<div id="checkmark-lottie"></div>
 			<button class="save-saved-gradient-name">
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>content-save</title><path d="M15,9H5V5H15M12,19A3,3 0 0,1 9,16A3,3 0 0,1 12,13A3,3 0 0,1 15,16A3,3 0 0,1 12,19M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3Z" /></svg>
 			</button>
 		</div>
 	`
+}
+
+let checkmarkLottie;
+
+function checkmarkAnimation() {
+	const lottieContainer = document.getElementById('checkmark-lottie');
+	lottieContainer.style.display = 'block';
+	lottieContainer.style.opacity = '1';
+
+	if (!checkmarkLottie) {
+		checkmarkLottie = lottie.loadAnimation({
+			container: lottieContainer,
+			renderer: 'svg',
+			loop: false,
+			autoplay: true,
+			path: './../../../lotties/checkmark-lottie.json'
+		});
+	} else {
+		checkmarkLottie.goToAndPlay(0, true);
+	}
+
+	setTimeout(() => {
+		lottieContainer.style.opacity = '0';
+	}, 3000);
+
+	setTimeout(() => {
+		lottieContainer.style.display = 'none';
+	}, 4000);
 }
 
 function savedGradientNameNumber() {
@@ -19,15 +51,17 @@ function savedGradientNameNumber() {
 }
 
 function editSavedGradientNameHandler() {
-	console.log('editSavedGradientNameHandler');
 	const savedGradient = this.closest('.saved-gradient');
 	const gradientName = savedGradient.querySelector('.gradient-name');
 	gradientName.focus();
 	gradientName.select();
 }
 
-function saveSavedGradientNameHandler() {
+function saveSavedGradientNameHandler(e) {
 	console.log('saveSavedGradientNameHandler');
+	e.target.blur();
+	saveSavedGradientsToLocalStorage();
+	checkmarkAnimation();
 }
 
 export function saveGradientNameInit(savedGradientElement) {
@@ -36,6 +70,12 @@ export function saveGradientNameInit(savedGradientElement) {
 
 	const saveSavedGradientName = savedGradientElement.querySelector('.save-saved-gradient-name');
 	saveSavedGradientName.addEventListener('click', saveSavedGradientNameHandler);
+
+	savedGradientElement.addEventListener('keypress', (e) => {
+		if (e.key === 'Enter') {
+			saveSavedGradientNameHandler(e);
+		}
+	});
 
 	// show the save button when the input is focused
 	const gradientName = savedGradientElement.querySelector('.gradient-name');

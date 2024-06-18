@@ -46,7 +46,7 @@ button.export-saved-gradients {
 }
 
 .saved-gradient-name {
-	padding-top: 4px;
+	padding-top: 5px;
 	margin-bottom: 5px;
 	position: relative;
 	display: flex;
@@ -67,7 +67,7 @@ button.export-saved-gradients {
 }
 
 .saved-gradient-name input {
-	padding: 8px 8px 5px 30px;
+	padding: 9px 8px 6px 30px;
 	border: none;
 }
 
@@ -106,6 +106,16 @@ button.save-saved-gradient-name svg {
 
 button.save-saved-gradient-name:hover svg {
 	opacity: 0.6;
+}
+
+#checkmark-lottie {
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	right: -5px;
+	display: none;
+	opacity: 0;
+	transition: opacity 1s;
 }
 
 .saved-gradient-row-2 {
