@@ -10,6 +10,7 @@ import { handleMouseDown } from './move-marker.js';
 export function createMarker(position, color, index) {
 	return `
     <div class="marker" style="left: ${position};" data-color-value="${color}" data-stop-index="${index + 1}">
+			<div class="marker-triangle"></div>
 			${createTrashIcon()}
 			${createColorPicker(color)}
 			</div>

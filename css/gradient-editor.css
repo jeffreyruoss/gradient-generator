@@ -57,14 +57,12 @@
 	opacity: 0.6;
 }
 
-/* triangle */
-.marker:before {
-	content: "";
+.marker-triangle {
 	width: 0;
 	height: 0;
 	border-left: 10px solid transparent;
 	border-right: 10px solid transparent;
-	border-bottom: 18px solid #96a7c4;
+	border-bottom: 18px solid #7a8caa;
 	border-radius: 50px 0 0 0;
 	display: block;
 	position: absolute;
@@ -73,7 +71,21 @@
 	transition: border-bottom 0.3s;
 }
 
-.marker.selected:before {
+.marker-triangle:before {
+	content: '';
+	width: 0;
+	height: 0;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-bottom: 12px solid #96a7c4;
+	border-radius: 50px 0 0 0;
+	display: block;
+	position: absolute;
+	left: -6px;
+	top: 4px;
+}
+
+.marker.selected .marker-triangle {
 	border-bottom: 18px solid #b6c0d4;
 }
 
@@ -130,7 +142,7 @@
 	background: radial-gradient(circle, #68a4ff 30%, #bbd6ff 20%);
 	background-size: 6px 6px;
 	background-position: top center;
-	filter: saturate(0.5);
+	filter: saturate(0.2);
 }
 
 .marker.selected:after {
