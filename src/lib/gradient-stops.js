@@ -3,9 +3,10 @@ import { autoSave } from "./auto-save";
 export let gradientStops = localStorage.getItem('gradient_generator_current_gradient')
 	? JSON.parse(localStorage.getItem('gradient_generator_current_gradient'))
 	: [
-		{ color: '#ADD8E6', position: 0 },
-		{ color: '#FFA07A', position: 50 },
-		{ color: '#0000FF', position: 100 }
+		{ color: '#001691', position: 0 },
+		{ color: '#aa00ff', position: 30 },
+		{ color: '#ff00a2', position: 70 },
+		{ color: '#630041', position: 100 }
 	];
 
 export function setGradientStops(newStops) {
