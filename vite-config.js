@@ -1,3 +1,6 @@
-export default {
-	base: '/gradient-generator/'
-}
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+	plugins: [react()],
+	base: "/gradient-generator/"
+})
