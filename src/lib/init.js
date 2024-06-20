@@ -5,10 +5,12 @@ import { initColorisPickers, initColorSwatches } from '../components/ColorPicker
 import { initTrashButtons } from '../components/TrashIcon.js';
 import { saveGradientsInit } from '../components/SavedGradientsSection/SavedGradientsSection.js';
 import { initPercentInput } from '../components/Marker/PercentInput.js';
+import { initGradientTypeSelector } from '../components/GradientTypeSelector.js';
 
 let gradientRectangle;
 
 export function init() {
+	initGradientTypeSelector();
 	initGradientRectangle();
 	gradientRectangle = getGradientRectangle();
 	updateGradient();
