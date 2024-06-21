@@ -7,6 +7,7 @@ export function createGradientContainer() {
     <div class="container">
       ${createGradientTypeSelector()}
       <div id="gradient-container">
+        <div id="gradient-preview"></div>
         <div id="gradient-rectangle">
           ${createMarkers()}
         </div>
@@ -37,7 +38,17 @@ export function updateGradient() {
     gradientRectangle.style.background = `${gradientType}-gradient(circle, ${gradientString})`;
   }
 
+  updateGradientPreview(gradientString);
   updateWrapBgGradient(gradientString);
+}
+
+function updateGradientPreview(gradientString) {
+  const gradientPreview = document.getElementById('gradient-preview');
+  if (gradientType === 'linear') {
+    gradientPreview.style.background = `${gradientType}-gradient(${gradientDegrees}deg, ${gradientString})`;
+  } else if (gradientType === 'radial') {
+    gradientPreview.style.background = `${gradientType}-gradient(circle, ${gradientString})`;
+  }
 }
 
 function updateWrapBgGradient(gradientString) {

@@ -4,8 +4,7 @@ export let gradientStops = localStorage.getItem('gradient_generator_current_grad
 	? JSON.parse(localStorage.getItem('gradient_generator_current_gradient'))
 	: [
 		{ color: '#001691', position: 0 },
-		{ color: '#aa00ff', position: 30 },
-		{ color: '#ff00a2', position: 70 },
+		{ color: '#ff00a2', position: 50 },
 		{ color: '#630041', position: 100 }
 	];
 
