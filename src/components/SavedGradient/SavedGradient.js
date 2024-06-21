@@ -4,9 +4,9 @@ import { createSavedGradientThumb } from './SavedGradientThumb.js';
 import { createLoadSavedGradientButton } from './LoadSavedGradient.js';
 import { createDeleteSavedGradientButton } from './DeleteSavedGradient.js';
 
-export function createSavedGradient(savedGradientStops, savedGradientDegrees) {
-	return `
-        <div class="saved-gradient" data-saved-gradient-stops="${savedGradientStopsDataString(savedGradientStops)}" data-saved-gradient-degrees="${savedGradientDegrees}">
+export function createSavedGradient(savedGradientStops, savedGradientDegrees, savedGradientType) {
+    return `
+        <div class="saved-gradient" data-saved-gradient-stops="${savedGradientStopsDataString(savedGradientStops)}" data-saved-gradient-degrees="${savedGradientDegrees}" data-saved-gradient-type="${savedGradientType}">
             <div class="saved-gradient-row-1">
                 ${createSavedGradientName()}
             </div>
@@ -18,11 +18,11 @@ export function createSavedGradient(savedGradientStops, savedGradientDegrees) {
                 </div>
             </div>
         </div>
-    `
+    `;
 }
 
 function savedGradientStopsDataString() {
-	const gradientStopsString = JSON.stringify(gradientStops);
-	const gradientStopsStringSingleQuotes = gradientStopsString.replace(/"/g, "'");
-	return gradientStopsStringSingleQuotes;
+    const gradientStopsString = JSON.stringify(gradientStops);
+    const gradientStopsStringSingleQuotes = gradientStopsString.replace(/"/g, "'");
+    return gradientStopsStringSingleQuotes;
 }

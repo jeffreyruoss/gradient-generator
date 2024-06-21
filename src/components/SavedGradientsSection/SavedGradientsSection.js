@@ -51,12 +51,14 @@ function loadSavedGradientsFromLocalStorage() {
 	const savedGradientsArray = JSON.parse(localStorage.getItem('gradient_generator_saved_gradients'));
 	if (savedGradientsArray) {
 		savedGradientsArray.forEach(savedGradient => {
-			const savedGradientHTML = createSavedGradient(savedGradient.stops);
+			const savedGradientHTML = createSavedGradient(savedGradient.stops, savedGradient.degrees, savedGradient.type);
 			savedGradientsContainer.insertAdjacentHTML('beforeend', savedGradientHTML);
 			const savedGradientElement = savedGradientsContainer.lastElementChild;
 			savedGradientElement.querySelector('.gradient-name').value = savedGradient.name;
 			savedGradientElement.dataset.savedGradientStops = JSON.stringify(savedGradient.stops);
-			savedGradientElement.dataset.savedGradientDegrees = savedGradient.degrees; // Load degrees from savedGradient
+			savedGradientElement.dataset.savedGradientDegrees = savedGradient.degrees;
+			savedGradientElement.dataset.savedGradientType = savedGradient.type;
+
 			saveGradientNameInit(savedGradientElement);
 			loadSavedGradientInit(savedGradientElement);
 			deleteGradientInit(savedGradientElement);

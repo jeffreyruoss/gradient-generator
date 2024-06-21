@@ -2,7 +2,7 @@ import { autoSave } from "../../lib/auto-save";
 import { setGradientStops } from "../../lib/gradient-stops";
 import { initColorisPickers, initColorSwatches } from "../ColorPicker";
 import { getGradientRectangle, initGradientRectangle, updateGradient } from "../GradientContainer";
-import { gradientDegrees, setGradientDegrees } from "../GradientTypeSelector";
+import { gradientDegrees, setGradientDegrees, setGradientType } from "../GradientTypeSelector";
 import { clearMarkers, createMarkers, initMarkers } from "../Marker/Marker";
 import { initPercentInput } from "../Marker/PercentInput";
 import { initTrashButtons } from "../TrashIcon";
@@ -25,11 +25,13 @@ export function loadSavedGradientInit(savedGradientElement) {
 function loadSavedGradient(savedGradientElement) {
 	const savedGradientData = savedGradientElement.dataset.savedGradientStops;
 	const savedGradientDegrees = savedGradientElement.dataset.savedGradientDegrees;
+	const saveGradientType = savedGradientElement.dataset.savedGradientType;
 
 	const gradientStops = JSON.parse(savedGradientData.replace(/'/g, '"'));
 
 	setGradientStops(gradientStops);
 	setGradientDegrees(savedGradientDegrees);
+	setGradientType(saveGradientType);
 
 	const degreesInput = document.querySelector('#degrees');
 	degreesInput.value = savedGradientDegrees;

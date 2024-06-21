@@ -90,3 +90,10 @@ export function setGradientDegrees(degrees) {
 	updateGradient();
 	autoSave();
 }
+
+export function setGradientType(type) {
+	gradientType = type;
+	updateGradientTypeUI();
+	updateGradient();
+	autoSave();
+}
