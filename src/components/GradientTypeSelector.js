@@ -1,6 +1,13 @@
 import { autoSave } from "../lib/auto-save";
 import { updateGradient } from "./GradientContainer";
 
+export let gradientType = 'linear';
+export let gradientDegrees = 45;
+
+let gradientTypeButtons;
+let gradientDegreesParent;
+let gradientDegreesInput;
+
 export function createGradientTypeSelector() {
 	return `
         <div class="gradient-type-selector">
@@ -19,58 +26,35 @@ export function createGradientTypeSelector() {
     `;
 }
 
-export let gradientType = 'linear';
-export let gradientDegrees = 45;
-
-let gradientTypeButtons;
-let gradientDegreesParent;
-let gradientDegreesInput;
-
 export function initGradientTypeSelector() {
 	const gradientTypeSelector = document.querySelector('.gradient-type-selector');
 	gradientTypeButtons = gradientTypeSelector.querySelectorAll('.gradient-type-button');
 	gradientDegreesParent = document.querySelector('.gradient-type-select-degrees');
 	gradientDegreesInput = document.querySelector('#degrees');
 
-	const gradient_generator_current_gradient = JSON.parse(localStorage.getItem('gradient_generator_current_gradient'));
+	const { degrees, type } = JSON.parse(localStorage.getItem('gradient_generator_current_gradient')) || {};
 
-	if (gradient_generator_current_gradient && gradient_generator_current_gradient.degrees) {
-		gradientDegrees = gradient_generator_current_gradient.degrees;
-		console.log(gradientDegrees);
-	} else {
-		gradientDegrees = 45;
-	}
-
-	if (gradient_generator_current_gradient && gradient_generator_current_gradient.type) {
-		gradientType = gradient_generator_current_gradient.type;
-	} else {
-		gradientType = 'linear';
-	}
+	gradientDegrees = degrees || 45;
+	gradientType = type || 'linear';
 
 	gradientDegreesInput.value = gradientDegrees;
 
-	if (gradientType === 'radial') {
-		gradientTypeButtons[1].classList.add('gradient-type-button-checked');
-		gradientTypeButtons[1].querySelector('input').checked = true;
-		gradientTypeButtons[0].classList.remove('gradient-type-button-checked');
-		gradientTypeButtons[0].querySelector('input').checked = false;
-		gradientDegreesParent.classList.add('hide');
-	} else {
-		gradientTypeButtons[0].classList.add('gradient-type-button-checked');
-		gradientTypeButtons[0].querySelector('input').checked = true;
-		gradientTypeButtons[1].classList.remove('gradient-type-button-checked');
-		gradientTypeButtons[1].querySelector('input').checked = false;
-	}
+	updateGradientTypeUI();
 
 	addEventListeners();
 }
 
-export function setGradientDegrees(newDegrees) {
-	gradientDegrees = newDegrees;
-}
+function updateGradientTypeUI() {
+	const isRadial = gradientType === 'radial';
+	const [linearButton, radialButton] = gradientTypeButtons;
 
-export function setGradientType(newType) {
-	gradientType = newType;
+	linearButton.classList.toggle('gradient-type-button-checked', !isRadial);
+	radialButton.classList.toggle('gradient-type-button-checked', isRadial);
+
+	linearButton.querySelector('input').checked = !isRadial;
+	radialButton.querySelector('input').checked = isRadial;
+
+	gradientDegreesParent.classList.toggle('hide', isRadial);
 }
 
 function addEventListeners() {
@@ -79,25 +63,10 @@ function addEventListeners() {
 }
 
 function handleGradientTypeChange(event) {
-	console.log('handleGradientTypeChange');
-	toggleButtonChecked(event);
-	toggleDegreesVisibility(event);
 	gradientType = event.target.value;
+	updateGradientTypeUI();
 	updateGradient();
 	autoSave();
-}
-
-function toggleButtonChecked(event) {
-	gradientTypeButtons.forEach(button => button.classList.remove('gradient-type-button-checked'));
-	event.target.parentNode.classList.add('gradient-type-button-checked');
-}
-
-function toggleDegreesVisibility(event) {
-	if (event.target.value === 'radial') {
-		gradientDegreesParent.classList.add('hide');
-	} else {
-		gradientDegreesParent.classList.remove('hide');
-	}
 }
 
 function handleDegreesChange(event) {
@@ -112,4 +81,12 @@ function validateDegrees(degrees) {
 		return '0';
 	}
 	return degrees;
+}
+
+export function setGradientDegrees(degrees) {
+	gradientDegrees = degrees;
+	gradientDegreesInput.value = degrees;
+	updateGradientTypeUI();
+	updateGradient();
+	autoSave();
 }
