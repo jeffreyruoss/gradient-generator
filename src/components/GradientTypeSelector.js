@@ -41,7 +41,26 @@ export function initGradientTypeSelector() {
 		gradientDegrees = 45;
 	}
 
+	if (gradient_generator_current_gradient && gradient_generator_current_gradient.type) {
+		gradientType = gradient_generator_current_gradient.type;
+	} else {
+		gradientType = 'linear';
+	}
+
 	gradientDegreesInput.value = gradientDegrees;
+
+	if (gradientType === 'radial') {
+		gradientTypeButtons[1].classList.add('gradient-type-button-checked');
+		gradientTypeButtons[1].querySelector('input').checked = true;
+		gradientTypeButtons[0].classList.remove('gradient-type-button-checked');
+		gradientTypeButtons[0].querySelector('input').checked = false;
+		gradientDegreesParent.classList.add('hide');
+	} else {
+		gradientTypeButtons[0].classList.add('gradient-type-button-checked');
+		gradientTypeButtons[0].querySelector('input').checked = true;
+		gradientTypeButtons[1].classList.remove('gradient-type-button-checked');
+		gradientTypeButtons[1].querySelector('input').checked = false;
+	}
 
 	addEventListeners();
 }
@@ -50,16 +69,22 @@ export function setGradientDegrees(newDegrees) {
 	gradientDegrees = newDegrees;
 }
 
+export function setGradientType(newType) {
+	gradientType = newType;
+}
+
 function addEventListeners() {
 	gradientTypeButtons.forEach(button => button.addEventListener('change', handleGradientTypeChange));
 	gradientDegreesInput.addEventListener('keyup', handleDegreesChange);
 }
 
 function handleGradientTypeChange(event) {
+	console.log('handleGradientTypeChange');
 	toggleButtonChecked(event);
 	toggleDegreesVisibility(event);
 	gradientType = event.target.value;
 	updateGradient();
+	autoSave();
 }
 
 function toggleButtonChecked(event) {
