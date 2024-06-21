@@ -1,3 +1,4 @@
+import { autoSave } from "../lib/auto-save";
 import { updateGradient } from "./GradientContainer";
 
 export function createGradientTypeSelector() {
@@ -31,6 +32,17 @@ export function initGradientTypeSelector() {
 	gradientDegreesParent = document.querySelector('.gradient-type-select-degrees');
 	gradientDegreesInput = document.querySelector('#degrees');
 
+	const gradient_generator_current_gradient = JSON.parse(localStorage.getItem('gradient_generator_current_gradient'));
+
+	if (gradient_generator_current_gradient && gradient_generator_current_gradient.degrees) {
+		gradientDegrees = gradient_generator_current_gradient.degrees;
+		console.log(gradientDegrees);
+	} else {
+		gradientDegrees = 45;
+	}
+
+	gradientDegreesInput.value = gradientDegrees;
+
 	addEventListeners();
 }
 
@@ -61,6 +73,7 @@ function toggleDegreesVisibility(event) {
 
 function handleDegreesChange(event) {
 	gradientDegrees = validateDegrees(event.target.value);
+	autoSave();
 	updateGradient();
 }
 

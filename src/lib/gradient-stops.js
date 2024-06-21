@@ -1,12 +1,18 @@
 import { autoSave } from "./auto-save";
 
-export let gradientStops = localStorage.getItem('gradient_generator_current_gradient')
+let storedGradient = localStorage.getItem('gradient_generator_current_gradient')
 	? JSON.parse(localStorage.getItem('gradient_generator_current_gradient'))
-	: [
-		{ color: '#001691', position: 0 },
-		{ color: '#ff00a2', position: 50 },
-		{ color: '#630041', position: 100 }
-	];
+	: {
+		stops: [
+			{ color: '#001691', position: 0 },
+			{ color: '#ff00a2', position: 50 },
+			{ color: '#630041', position: 100 }
+		],
+		degrees: 0
+	};
+
+export let gradientStops = storedGradient.stops;
+export let gradientDegrees = storedGradient.degrees;
 
 export function setGradientStops(newStops) {
 	gradientStops = newStops;
