@@ -46,6 +46,10 @@ export function initGradientTypeSelector() {
 	addEventListeners();
 }
 
+export function setGradientDegrees(newDegrees) {
+	gradientDegrees = newDegrees;
+}
+
 function addEventListeners() {
 	gradientTypeButtons.forEach(button => button.addEventListener('change', handleGradientTypeChange));
 	gradientDegreesInput.addEventListener('keyup', handleDegreesChange);

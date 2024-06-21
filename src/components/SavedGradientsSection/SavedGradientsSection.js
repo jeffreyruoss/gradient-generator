@@ -56,6 +56,7 @@ function loadSavedGradientsFromLocalStorage() {
 			const savedGradientElement = savedGradientsContainer.lastElementChild;
 			savedGradientElement.querySelector('.gradient-name').value = savedGradient.name;
 			savedGradientElement.dataset.savedGradientStops = JSON.stringify(savedGradient.stops);
+			savedGradientElement.dataset.savedGradientDegrees = savedGradient.degrees; // Load degrees from savedGradient
 			saveGradientNameInit(savedGradientElement);
 			loadSavedGradientInit(savedGradientElement);
 			deleteGradientInit(savedGradientElement);
