@@ -1,5 +1,5 @@
 import { gradientStops } from '../lib/gradient-stops.js';
-import { createGradientTypeSelector, gradientType } from './GradientTypeSelector.js';
+import { createGradientTypeSelector, gradientDegrees, gradientType } from './GradientTypeSelector.js';
 import { createMarkers } from './Marker/Marker.js';
 
 export function createGradientContainer() {
@@ -30,7 +30,6 @@ export function createGradientString(stops) {
 }
 
 export function updateGradient() {
-  console.log('upateGradient: gradientType:', gradientType);
   const gradientString = createGradientString(gradientStops);
   if (gradientType === 'linear') {
     gradientRectangle.style.background = `${gradientType}-gradient(to right, ${gradientString})`;
@@ -38,14 +37,13 @@ export function updateGradient() {
     gradientRectangle.style.background = `${gradientType}-gradient(circle, ${gradientString})`;
   }
 
-  gradientRectangle.style.background = `${gradientType}-gradient(to right, ${gradientString})`;
   updateWrapBgGradient(gradientString);
 }
 
 function updateWrapBgGradient(gradientString) {
   const wrap = document.querySelector('.wrap');
   if (gradientType === 'linear') {
-    wrap.style.background = `${gradientType}-gradient(to right, ${gradientString})`;
+    wrap.style.background = `${gradientType}-gradient(${gradientDegrees}deg, ${gradientString})`;
   } else if (gradientType === 'radial') {
     wrap.style.background = `${gradientType}-gradient(circle, ${gradientString})`;
   }

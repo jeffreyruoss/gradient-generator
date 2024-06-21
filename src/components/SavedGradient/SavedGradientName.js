@@ -58,7 +58,6 @@ function editSavedGradientNameHandler() {
 }
 
 function saveSavedGradientNameHandler(e) {
-	console.log('saveSavedGradientNameHandler');
 	e.target.blur();
 	saveSavedGradientsToLocalStorage();
 	checkmarkAnimation();

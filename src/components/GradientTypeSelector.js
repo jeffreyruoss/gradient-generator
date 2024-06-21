@@ -12,14 +12,14 @@ export function createGradientTypeSelector() {
                 <label for="radial">Radial</label>
             </div>
             <div class="gradient-type-select-degrees">
-                <input type="text" id="degrees" name="degrees" value="" placeholder="0">
+                <input type="text" id="degrees" name="degrees" value="" placeholder="90">
             </div>
         </div>
     `;
 }
 
 export let gradientType = 'linear';
-export let gradientDegrees = 0;
+export let gradientDegrees = 90;
 
 let gradientTypeButtons;
 let gradientDegreesParent;
