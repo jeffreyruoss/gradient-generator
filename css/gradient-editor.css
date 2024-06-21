@@ -1,3 +1,68 @@
+.gradient-type-selector {
+	display: flex;
+	justify-content: start;
+	margin-bottom: 10px;
+}
+
+.gradient-type-button {
+	padding: 5px 12px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.gradient-type-button:first-child {
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	border: 1px solid #b9b9b9;
+}
+
+.gradient-type-button:nth-child(2) {
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-top: 1px solid #b9b9b9;
+	border-right: 1px solid #b9b9b9;
+	border-bottom: 1px solid #b9b9b9;
+}
+
+.gradient-type-button-checked {
+	background-color: #CFD5DD;
+}
+
+.gradient-type-button input {
+	display: none;
+}
+
+.gradient-type-button label {
+	cursor: pointer;
+	color: #959595;
+}
+
+.gradient-type-button-checked label {
+	color: #333;
+}
+
+.gradient-type-select-degrees {
+	margin-left: 15px;
+	position: relative;
+}
+
+.gradient-type-select-degrees:before {
+	content: '°';
+	position: absolute;
+	right: -10px;
+	top: 0;
+	font-size: 20px;
+}
+
+.gradient-type-select-degrees.hide {
+	display: none;
+}
+
+.gradient-type-select-degrees input {
+	width: 25px;
+	text-align: center;
+}
+
 #gradient-container {
 	display: flex;
 	flex-direction: column;
