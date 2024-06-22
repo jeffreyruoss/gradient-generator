@@ -115,7 +115,7 @@ button.save-saved-gradient-name:hover svg {
 	opacity: 0.6;
 }
 
-#checkmark-lottie-save-gradient-name {
+.checkmark-lottie-save-gradient-name {
 	width: 30px;
 	height: 30px;
 	position: absolute;

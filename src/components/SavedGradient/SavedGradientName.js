@@ -9,7 +9,7 @@ export function createSavedGradientName() {
 			</button>
 			<label>Name: </label>
 			<input type="text" class="gradient-name" value="Gradient #${savedGradientNameNumber()}">
-			<div id="checkmark-lottie-save-gradient-name"></div>
+			<div class="checkmark-lottie-save-gradient-name"></div>
 			<button class="save-saved-gradient-name">
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>content-save</title><path d="M15,9H5V5H15M12,19A3,3 0 0,1 9,16A3,3 0 0,1 12,13A3,3 0 0,1 15,16A3,3 0 0,1 12,19M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3Z" /></svg>
 			</button>
@@ -17,12 +17,11 @@ export function createSavedGradientName() {
 	`
 }
 
-let checkmarkLottie;
-
-function checkmarkAnimation() {
-	const lottieContainer = document.getElementById('checkmark-lottie-save-gradient-name');
+function checkmarkAnimation(lottieContainer) {
 	lottieContainer.style.display = 'block';
 	lottieContainer.style.opacity = '1';
+
+	let checkmarkLottie;
 
 	if (!checkmarkLottie) {
 		checkmarkLottie = lottie.loadAnimation({
@@ -30,7 +29,7 @@ function checkmarkAnimation() {
 			renderer: 'svg',
 			loop: false,
 			autoplay: true,
-			path: './../../../lotties/checkmark-lottie.json'
+			path: 'lotties/checkmark-lottie.json'
 		});
 	} else {
 		checkmarkLottie.goToAndPlay(0, true);
@@ -42,6 +41,7 @@ function checkmarkAnimation() {
 
 	setTimeout(() => {
 		lottieContainer.style.display = 'none';
+		checkmarkLottie.destroy();
 	}, 4000);
 }
 
@@ -60,7 +60,8 @@ function editSavedGradientNameHandler() {
 function saveSavedGradientNameHandler(e) {
 	e.target.blur();
 	saveSavedGradientsToLocalStorage();
-	checkmarkAnimation();
+	const lottieContainer = this.closest('.saved-gradient-name').querySelector('.checkmark-lottie-save-gradient-name');
+	checkmarkAnimation(lottieContainer);
 }
 
 export function saveGradientNameInit(savedGradientElement) {
