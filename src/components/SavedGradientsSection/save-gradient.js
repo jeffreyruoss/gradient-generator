@@ -6,7 +6,6 @@ import { createSavedGradient } from '../SavedGradient/SavedGradient';
 import { saveGradientNameInit } from '../SavedGradient/SavedGradientName';
 import { savedGradientsContainer, addSavedGradientsHeading } from './SavedGradientsSection';
 
-
 export function saveGradientHandler() {
 	addSavedGradientToUI();
 	saveSavedGradientsToLocalStorage();
@@ -28,13 +27,17 @@ export function saveSavedGradientsToLocalStorage() {
 	savedGradients.forEach(savedGradient => {
 		const gradientName = savedGradient.querySelector('.gradient-name').value;
 		const gradientStopsString = savedGradient.dataset.savedGradientStops;
+		const gradientType = savedGradient.dataset.savedGradientType;
 		const gradientDegrees = savedGradient.dataset.savedGradientDegrees;
-		const gradientType = savedGradient.dataset.savedGradientType; // Use the type from the dataset
 
 		const gradientStopsStringDoubleQuotes = gradientStopsString.replace(/'/g, '"');
 		const gradientStops = JSON.parse(gradientStopsStringDoubleQuotes);
 
-		savedGradientsArray.push({ name: gradientName, stops: gradientStops, degrees: gradientDegrees, type: gradientType });
+		if (gradientType !== 'radial') {
+			savedGradientsArray.push({ name: gradientName, type: gradientType, stops: gradientStops, degrees: gradientDegrees });
+		} else {
+			savedGradientsArray.push({ name: gradientName, type: gradientType, stops: gradientStops });
+		}
 	});
 
 	localStorage.setItem('gradient_generator_saved_gradients', JSON.stringify(savedGradientsArray));
