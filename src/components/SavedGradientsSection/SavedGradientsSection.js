@@ -15,7 +15,7 @@ export function createSavedGradients() {
 				<div class="saved-gradients-buttons">
 					<button class="save-gradient-button">SAVE</button>
 					<button class="import-saved-gradients">IMPORT</button>
-					<button class="export-saved-gradients">EXPORT</button>
+					<button class="export-saved-gradients hide">EXPORT</button>
 				</div>
 				<div class="saved-gradients-container"></div>
 			</div>
@@ -45,6 +45,8 @@ export function saveGradientsInit() {
 	if (savedGradientsLocalStorage && savedGradientsLocalStorage !== '[]') {
 		addSavedGradientsHeading();
 	}
+
+	toggleExportButtonVisibilty();
 }
 
 function loadSavedGradientsFromLocalStorage() {
@@ -63,5 +65,15 @@ function loadSavedGradientsFromLocalStorage() {
 			loadSavedGradientInit(savedGradientElement);
 			deleteGradientInit(savedGradientElement);
 		});
+	}
+}
+
+export function toggleExportButtonVisibilty() {
+	const savedGradients = document.querySelectorAll('.saved-gradient');
+	const exportSavedGradientsButton = document.querySelector('.export-saved-gradients');
+	if (savedGradients.length) {
+		exportSavedGradientsButton.classList.remove('hide');
+	} else {
+		exportSavedGradientsButton.classList.add('hide');
 	}
 }

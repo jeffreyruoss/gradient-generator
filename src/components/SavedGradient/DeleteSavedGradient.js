@@ -1,4 +1,5 @@
 import { saveSavedGradientsToLocalStorage } from '../SavedGradientsSection/save-gradient.js';
+import { toggleExportButtonVisibilty } from '../SavedGradientsSection/SavedGradientsSection.js';
 
 export function createDeleteSavedGradientButton() {
 	return `
@@ -24,4 +25,6 @@ function deleteGradientHandler(event) {
 		const savedGradientsHeading = document.querySelector('.saved-gradients-heading');
 		savedGradientsHeading.remove();
 	}
+
+	toggleExportButtonVisibilty();
 }

@@ -14,7 +14,10 @@ button.import-saved-gradients {
 
 button.export-saved-gradients {
 	background-color: #6C2BD9;
+}
 
+button.export-saved-gradients.hide {
+	display: none;
 }
 
 .saved-gradients-heading {

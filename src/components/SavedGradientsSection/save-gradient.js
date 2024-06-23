@@ -4,7 +4,7 @@ import { deleteGradientInit } from '../SavedGradient/DeleteSavedGradient';
 import { loadSavedGradientInit } from '../SavedGradient/LoadSavedGradient';
 import { createSavedGradient } from '../SavedGradient/SavedGradient';
 import { saveGradientNameInit } from '../SavedGradient/SavedGradientName';
-import { savedGradientsContainer, addSavedGradientsHeading } from './SavedGradientsSection';
+import { savedGradientsContainer, addSavedGradientsHeading, toggleExportButtonVisibilty } from './SavedGradientsSection';
 
 export function saveGradientHandler() {
 	addSavedGradientToUI();
@@ -18,6 +18,7 @@ function addSavedGradientToUI() {
 	loadSavedGradientInit(savedGradientElement);
 	deleteGradientInit(savedGradientElement);
 	addSavedGradientsHeading();
+	toggleExportButtonVisibilty();
 }
 
 export function saveSavedGradientsToLocalStorage() {
