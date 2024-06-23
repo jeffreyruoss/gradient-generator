@@ -29,7 +29,7 @@ body {
 	display: flex;
 	place-items: center;
 	min-width: 320px;
-	min-height: 100vh;
+	height: 100%;
 	background-color: #fff;
 	font-family: 'Source Sans Pro', sans-serif;
 	color: #000;
@@ -37,6 +37,7 @@ body {
 
 #app {
 	width: 100%;
+	height: 100%;
 	margin: 0 auto;
 	text-align: center;
 }
@@ -48,14 +49,15 @@ body {
 	height: 100%;
 	display: flex;
 	justify-content: center;
-	align-items: center;
-	height: 100vh;
+	align-items: start;
 	background-color: #fff;
 }
 
 @media (min-width: 768px) {
 	.wrap {
 		padding: 45px;
+		align-items: center;
+		height: 100vh;
 	}
 }
 
@@ -64,12 +66,25 @@ body {
 	border-style: solid;
 	border-width: 4px;
 	border-radius: 30px;
-	padding: 25px;
+	padding: 15px;
 	width: 100%;
 	max-width: 641px;
-	background-color: #ffffffa1;
+	background-color: #ffffff61;
 	box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1), 0 0 0 2px rgba(0, 0, 0, 0.05) inset;
 	animation: fadeInUp 3s ease;
+}
+
+/* No main container on mobile */
+@media (min-width: 0) and (max-width: 767px) {
+	.wrap {
+		padding: 0;
+	}
+
+	.main {
+		border-width: 0;
+		border-radius: 0;
+		box-shadow: none;
+	}
 }
 
 @keyframes fadeInUp {
@@ -118,6 +133,7 @@ h1 {
 	margin-top: 0;
 	margin-bottom: 0.35em;
 	font-size: 2em;
+	text-shadow: 0 0 2px rgba(255, 255, 255, 1);
 }
 
 @media (min-width: 768px) {
