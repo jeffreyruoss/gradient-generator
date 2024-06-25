@@ -59,9 +59,6 @@ export function initPercentInput() {
 					handleInputSubmit(event, marker);
 				}
 			});
-			percentInput.addEventListener('blur', (event) => {
-				handleInputSubmit(event, marker);
-			});
 			percentInput.hasInputListener = true;
 		}
 	});
