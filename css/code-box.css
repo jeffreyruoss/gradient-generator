@@ -1,0 +1,39 @@
+.code-box-container {
+	margin-bottom: 30px;
+	background-color: #353642;
+	padding: 35px;
+	border-radius: 15px;
+	color: #fff;
+	text-align: left;
+	position: relative;
+}
+
+@media (min-width: 768px) {
+	.code-box-container {
+		padding: 35px 100px 35px 35px;
+	}
+}
+
+.code-box-copy {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	border-radius: 0px 15px 0 0;
+	padding: 5px 30px 5px 15px;
+	color: #aaa;
+	font-size: 15px;
+}
+
+.code-box-copy svg {
+	position: absolute;
+	top: 7px;
+	right: 9px;
+	width: 16px;
+	height: 16px;
+	fill: #076C4E;
+	transition: opacity 0.3s;
+}
+
+.code-box-copy svg.hide {
+	display: none;
+}

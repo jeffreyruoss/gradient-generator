@@ -1,4 +1,5 @@
 import { gradientStops } from '../lib/gradient-stops.js';
+import { updateCodeBox } from './CodeBox.js';
 import { createGradientTypeSelector, gradientDegrees, gradientType } from './GradientTypeSelector.js';
 import { createMarkers } from './Marker/Marker.js';
 
@@ -27,7 +28,7 @@ export function getGradientRectangle() {
 }
 
 export function createGradientString(stops) {
-  return stops.map(stop => `${stop.color} ${stop.position}%`).join(', ');
+  return stops.map(stop => `${stop.color} ${Math.round(stop.position)}%`).join(', ');
 }
 
 export function updateGradient() {
@@ -38,6 +39,7 @@ export function updateGradient() {
     gradientRectangle.style.background = `${gradientType}-gradient(circle, ${gradientString})`;
   }
 
+  updateCodeBox(gradientString);
   updateGradientPreview(gradientString);
   updateWrapBgGradient(gradientString);
 }

@@ -7,6 +7,7 @@ import { saveGradientsInit } from '../components/SavedGradientsSection/SavedGrad
 import { initPercentInput } from '../components/Marker/PercentInput.js';
 import { initGradientTypeSelector } from '../components/GradientTypeSelector.js';
 import { noSupportMobile } from './no-support-mobile.js';
+import { initCodeBox } from '../components/CodeBox.js';
 
 let gradientRectangle;
 
@@ -21,6 +22,7 @@ export function init() {
 	initColorSwatches();
 	initPercentInput();
 	initTrashButtons();
+	initCodeBox();
 	saveGradientsInit();
 
 	gradientRectangle.addEventListener('click', (event) => {
