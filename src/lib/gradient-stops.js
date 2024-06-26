@@ -5,7 +5,8 @@ let storedGradient = localStorage.getItem('gradient_generator_current_gradient')
 	: {
 		stops: [
 			{ color: '#001691', position: 0 },
-			{ color: '#ff00a2', position: 50 },
+			{ color: '#ff00a2', position: 25 },
+			{ color: '#ff7f00', position: 75 },
 			{ color: '#630041', position: 100 }
 		],
 		degrees: 0
