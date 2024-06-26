@@ -2,6 +2,7 @@ import { gradientStops } from '../lib/gradient-stops.js';
 import { updateCodeBox } from './CodeBox.js';
 import { createGradientTypeSelector, gradientDegrees, gradientType } from './GradientTypeSelector.js';
 import { createMarkers } from './Marker/Marker.js';
+import { createTutorial } from './Tutorial.js';
 
 export function createGradientContainer() {
   return `
@@ -9,6 +10,7 @@ export function createGradientContainer() {
       ${createGradientTypeSelector()}
       <div id="gradient-container">
         <div id="gradient-preview"></div>
+        ${createTutorial()}
         <div id="gradient-rectangle">
           ${createMarkers()}
         </div>

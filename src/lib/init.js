@@ -8,6 +8,7 @@ import { initPercentInput } from '../components/Marker/PercentInput.js';
 import { initGradientTypeSelector } from '../components/GradientTypeSelector.js';
 import { noSupportMobile } from './no-support-mobile.js';
 import { initCodeBox } from '../components/CodeBox.js';
+import { initTutorial } from '../components/Tutorial.js';
 
 let gradientRectangle;
 
@@ -24,6 +25,7 @@ export function init() {
 	initTrashButtons();
 	initCodeBox();
 	saveGradientsInit();
+	initTutorial();
 
 	gradientRectangle.addEventListener('click', (event) => {
 		if (event.target !== gradientRectangle) {

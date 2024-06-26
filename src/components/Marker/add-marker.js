@@ -1,4 +1,5 @@
 import { getGradientRectangle } from "../GradientContainer.js";
+import { removeTutorial } from "../Tutorial.js";
 import { createMarker, updateUI } from "./Marker.js";
 
 export function addMarker(event) {
@@ -29,6 +30,7 @@ export function getClosestMarker(x, markers) {
 }
 
 export function createAndInsertMarker(closestMarker, color, index, position, x) {
+	removeTutorial();
 	const marker = createMarker(position, color, index);
 	if (x < closestMarker.offsetLeft) {
 		closestMarker.insertAdjacentHTML('beforebegin', marker);
