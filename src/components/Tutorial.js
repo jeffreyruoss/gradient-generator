@@ -16,6 +16,8 @@ export function createTutorial() {
 let tutorialContainer;
 
 export function initTutorial() {
+	if (localStorage.getItem('gradient_generator_tutorial_seen')) return '';
+
 	tutorialContainer = document.querySelector('.tutorial-container');
 	const closeButton = document.querySelector('.close-x');
 
