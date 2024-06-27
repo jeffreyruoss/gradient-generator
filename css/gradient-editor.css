@@ -79,6 +79,8 @@
 }
 
 .tutorial-container {
+	padding-left: 20px;
+	padding-right: 20px;
 	position: relative;
 	width: 100%;
 	opacity: 0;
