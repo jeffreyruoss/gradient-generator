@@ -15,12 +15,12 @@
 
 @font-face {
 	font-family: 'Source Sans Pro';
-	src: url('./fonts/SourceSans3-VariableFont_wght.ttf') format('truetype');
+	src: url('/fonts/SourceSans3-VariableFont_wght.ttf') format('truetype');
 }
 
 @font-face {
 	font-family: 'Source Sans Pro Italic';
-	src: url('./fonts/SourceSans3-Italic-VariableFont_wght.ttf') format('truetype');
+	src: url('/fonts/SourceSans3-Italic-VariableFont_wght.ttf') format('truetype');
 }
 
 html {
