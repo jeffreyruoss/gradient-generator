@@ -1,7 +1,9 @@
 import { autoSave } from '../../lib/auto-save';
-import { gradientStops } from '../../lib/gradient-stops';
+import { gradientStops, updateGradientStops } from '../../lib/gradient-stops';
 import { getGradientRectangle, updateGradient } from '../GradientContainer';
 import { updateMarkerMove, reorderMarkers } from './move-marker';
+
+let isSubmitting = false;
 
 export function createPercentInput(value) {
 	value = value.replace('%', '');
@@ -34,18 +36,19 @@ function handleInputSubmit(event, marker) {
 	event.preventDefault();
 	const input = marker.querySelector('.percent-input');
 	const value = Math.round(parseFloat(input.value));
-	if (value < 0 || isNaN(value)) {
-		input.value = 0;
-	}
-	if (value > 100) {
-		input.value = 100;
-	}
+	input.value = Math.max(0, Math.min(100, value));
+
 	const position = Number(input.value);
 	updateMarkerMove(marker, position);
 	reorderMarkers();
+	updateGradientStops();
 	const gradientRectangle = getGradientRectangle();
 	updateGradient(gradientRectangle);
 	autoSave();
+
+	if (event.type === 'keydown') {
+		input.blur();
+	}
 }
 
 export function initPercentInput() {
@@ -56,7 +59,19 @@ export function initPercentInput() {
 			percentInput.addEventListener('input', handleInputChange);
 			percentInput.addEventListener('keydown', (event) => {
 				if (event.key === 'Enter') {
+					event.preventDefault();
+					if (!isSubmitting) {
+						isSubmitting = true;
+						handleInputSubmit(event, marker);
+						isSubmitting = false;
+					}
+				}
+			});
+			percentInput.addEventListener('blur', (event) => {
+				if (!isSubmitting) {
+					isSubmitting = true;
 					handleInputSubmit(event, marker);
+					isSubmitting = false;
 				}
 			});
 			percentInput.hasInputListener = true;
