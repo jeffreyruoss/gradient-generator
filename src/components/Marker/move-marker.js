@@ -27,6 +27,15 @@ function handleMouseUp(onMouseMove) {
 }
 
 export function handleMouseDown(event, marker, startX) {
+	// Check if the clicked element is a percentInput
+	if (event.target.classList.contains('percent-input')) {
+		// If it's a percentInput, don't initiate marker movement
+		return;
+	}
+
+	// Ensure any active inputs are blurred
+	document.activeElement.blur();
+
 	const onMouseMove = (e) => handleMouseMove(e, marker, startX);
 	const onMouseUp = () => handleMouseUp(onMouseMove);
 
