@@ -60,7 +60,7 @@ function editSavedGradientNameHandler() {
 function saveSavedGradientNameHandler(e) {
 	e.target.blur();
 	saveSavedGradientsToLocalStorage();
-	const lottieContainer = this.closest('.saved-gradient-name').querySelector('.checkmark-lottie-save-gradient-name');
+	const lottieContainer = e.target.closest('.saved-gradient-name').querySelector('.checkmark-lottie-save-gradient-name');
 	checkmarkAnimation(lottieContainer);
 }
 
