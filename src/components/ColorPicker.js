@@ -38,5 +38,6 @@ export function initColorSwatches() {
 	const colorSwatches = document.querySelectorAll('.color-swatch');
 	colorSwatches.forEach(swatch => {
 		swatch.addEventListener('click', (event) => handleSwatchClick(swatch, event));
+		swatch.addEventListener('touchstart', (event) => handleSwatchClick(swatch, event));
 	});
 }
