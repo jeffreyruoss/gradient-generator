@@ -37,7 +37,7 @@ function initMarker(marker, index, gradientRectangle) {
 	});
 	marker.addEventListener('touchstart', (event) => {
 		markerSelect(marker);
-		if (!event.target.classList.contains('percent-input') || !event.target.classList.contains('.color-swatch')) {
+		if (!event.target.classList.contains('percent-input') || !event.target.classList.contains('.color-swatch') || !event.target.classList.contains('.trash')) {
 			event.preventDefault();
 		}
 		handleMouseDown(event, marker, startX);

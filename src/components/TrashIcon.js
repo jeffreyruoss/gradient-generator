@@ -16,6 +16,9 @@ export function initTrashButtons() {
 		button.addEventListener('click', () => {
 			handleTrashButtonClick(button.parentElement);
 		});
+		button.addEventListener('touchstart', () => {
+			handleTrashButtonClick(button.parentElement);
+		});
 	});
 }
 
