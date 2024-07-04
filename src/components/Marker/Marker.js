@@ -35,6 +35,13 @@ function initMarker(marker, index, gradientRectangle) {
 		}
 		handleMouseDown(event, marker, startX);
 	});
+	marker.addEventListener('touchstart', (event) => {
+		markerSelect(marker);
+		if (!event.target.classList.contains('percent-input')) {
+			event.preventDefault();
+		}
+		handleMouseDown(event, marker, startX);
+	});
 }
 
 function markerSelect(marker) {

@@ -1,13 +1,22 @@
 import { getGradientRectangle } from "../GradientContainer";
 import { autoSave } from "../../lib/auto-save";
 import { gradientStops } from "../../lib/gradient-stops";
-import { updateMarkerIndices } from "./Marker"
+import { updateMarkerIndices } from "./Marker";
 import { updateGradient } from "../GradientContainer";
 import { updatePercentInputValue } from "./PercentInput";
 
 function handleMouseMove(e, marker) {
 	const gradientRectangle = getGradientRectangle();
 	const position = Math.max(0, Math.min(100, ((e.clientX - gradientRectangle.getBoundingClientRect().left) / gradientRectangle.offsetWidth) * 100));
+	updateMarkerMove(marker, position);
+	reorderMarkers();
+	updateGradient(gradientRectangle);
+}
+
+function handleTouchMove(e, marker) {
+	const gradientRectangle = getGradientRectangle();
+	const touch = e.touches[0];
+	const position = Math.max(0, Math.min(100, ((touch.clientX - gradientRectangle.getBoundingClientRect().left) / gradientRectangle.offsetWidth) * 100));
 	updateMarkerMove(marker, position);
 	reorderMarkers();
 	updateGradient(gradientRectangle);
@@ -20,9 +29,11 @@ export function updateMarkerMove(marker, position) {
 	updatePercentInputValue(marker, position);
 }
 
-function handleMouseUp(onMouseMove) {
+function handleMouseUp(onMouseMove, onTouchMove) {
 	document.removeEventListener('mousemove', onMouseMove);
 	document.removeEventListener('mouseup', handleMouseUp);
+	document.removeEventListener('touchmove', onTouchMove);
+	document.removeEventListener('touchend', handleMouseUp);
 	autoSave();
 }
 
@@ -37,10 +48,13 @@ export function handleMouseDown(event, marker, startX) {
 	document.activeElement.blur();
 
 	const onMouseMove = (e) => handleMouseMove(e, marker, startX);
-	const onMouseUp = () => handleMouseUp(onMouseMove);
+	const onTouchMove = (e) => handleTouchMove(e, marker, startX);
+	const onMouseUp = () => handleMouseUp(onMouseMove, onTouchMove);
 
 	document.addEventListener('mousemove', onMouseMove);
 	document.addEventListener('mouseup', onMouseUp);
+	document.addEventListener('touchmove', onTouchMove);
+	document.addEventListener('touchend', onMouseUp);
 }
 
 export function reorderMarkers() {
