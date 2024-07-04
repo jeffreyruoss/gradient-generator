@@ -5,21 +5,21 @@ import { updateGradient } from "../GradientContainer";
 import { updatePercentInputValue } from "./PercentInput";
 import { reorderMarkers } from "./reorder-markers";
 
-function handleMouseMove(e, marker) {
+function handleMove(e, marker, isTouch = false) {
 	const gradientRectangle = getGradientRectangle();
-	const position = Math.max(0, Math.min(100, ((e.clientX - gradientRectangle.getBoundingClientRect().left) / gradientRectangle.offsetWidth) * 100));
+	const clientX = isTouch ? e.touches[0].clientX : e.clientX;
+	const position = Math.max(0, Math.min(100, ((clientX - gradientRectangle.getBoundingClientRect().left) / gradientRectangle.offsetWidth) * 100));
 	updateMarkerMove(marker, position);
 	reorderMarkers();
 	updateGradient(gradientRectangle);
 }
 
+function handleMouseMove(e, marker) {
+	handleMove(e, marker, false);
+}
+
 function handleTouchMove(e, marker) {
-	const gradientRectangle = getGradientRectangle();
-	const touch = e.touches[0];
-	const position = Math.max(0, Math.min(100, ((touch.clientX - gradientRectangle.getBoundingClientRect().left) / gradientRectangle.offsetWidth) * 100));
-	updateMarkerMove(marker, position);
-	reorderMarkers();
-	updateGradient(gradientRectangle);
+	handleMove(e, marker, true);
 }
 
 export function updateMarkerMove(marker, position) {
