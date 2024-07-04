@@ -1,7 +1,8 @@
 import { autoSave } from '../../lib/auto-save';
 import { updateGradientStops } from '../../lib/gradient-stops';
 import { getGradientRectangle, updateGradient } from '../GradientContainer';
-import { updateMarkerMove, reorderMarkers } from './move-marker';
+import { updateMarkerMove } from './move-marker';
+import { reorderMarkers } from "./reorder-markers";
 
 let isSubmitting = false;
 
