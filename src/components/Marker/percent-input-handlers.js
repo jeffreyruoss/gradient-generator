@@ -51,5 +51,10 @@ export function addInputListeners(marker) {
 	});
 	percentInput.addEventListener('blur', (event) => submitIfNotAlreadySubmitting(event, marker));
 
+	percentInput.addEventListener('touchstart', () => {
+		percentInput.focus();
+		percentInput.select();
+	});
+
 	percentInput.hasInputListener = true;
 }
