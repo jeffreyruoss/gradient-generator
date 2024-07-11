@@ -34,6 +34,7 @@ button.export-saved-gradients.hide {
 
 .saved-gradient:last-child {
 	margin-bottom: 0;
+	padding-bottom: 0;
 }
 
 @media (min-width: 768px) {
@@ -64,6 +65,7 @@ button.export-saved-gradients.hide {
 
 @media (min-width: 768px) {
 	.saved-gradient-name {
+		padding-top: 9px;
 		margin-bottom: 0;
 	}
 }
@@ -82,8 +84,8 @@ button.export-saved-gradients.hide {
 
 button.edit-saved-gradient-name {
 	position: absolute;
-	left: 50px;
-	margin-top: 8px;
+	left: 53px;
+	margin-top: 6px;
 	margin-right: 5px;
 	padding: 0;
 	width: 20px;
@@ -151,6 +153,7 @@ button.save-saved-gradient-name:hover svg {
 @media (min-width: 768px) {
 	.saved-gradient-thumb {
 		flex-grow: 1;
+		height: 32px;
 	}
 }
 
