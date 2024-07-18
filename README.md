@@ -9,12 +9,12 @@ Check out the live demo on GitHub Pages: [Gradient Generator Demo](https://jeffr
 
 ## Description
 
-The Gradient Generator is an open-source tool that allows developers to integrate a gradient creation interface into their applications. This tool enables end users to create and customize gradients through an intuitive UI. It offers a variety of features including gradient type selection, customizable color stops, real-time gradient preview, and CSS code generation. The tool is designed to be responsive, ensuring a seamless experience on both mobile and desktop devices.
+The Gradient Generator is an open-source tool built with vanilla JavasScript that allows developers to integrate a gradient creation interface into their applications. This tool enables end users to create and customize gradients through an intuitive UI. It offers a variety of features including gradient type selection, customizable color stops, real-time gradient preview, and CSS code generation. The tool is designed to be responsive, ensuring a seamless experience on both mobile and desktop devices.
 
 ## Features
 
 - **Gradient Type Selection**: End users can choose between different gradient types (e.g., linear, radial).
-- **Customizable Color Stops**: Users can adjust the color stops for their gradients.
+- **Customizable Color Stops**: Users can add, remove and drag to adjust the color stops for their gradients or set the percentage value numberically.
 - **Real-time Preview**: Provides an immediate visual representation of the gradient as it is being created.
 - **CSS Code Generation**: Automatically generates the CSS code for the gradient, ready to be used in web projects.
 - **Responsive Design**: Ensures the tool works flawlessly on both mobile and desktop devices.
