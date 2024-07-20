@@ -1,4 +1,4 @@
-import { GradientGenerator } from "./GradientGenerator";
+import { GradientGenerator } from "./src/GradientGenerator";
 
 const gradientGenerator = new GradientGenerator('gradient-generator');
 
