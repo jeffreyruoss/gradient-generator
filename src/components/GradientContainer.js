@@ -56,10 +56,12 @@ function updateGradientPreview(gradientString) {
 }
 
 function updateWrapBgGradient(gradientString) {
-  const wrap = document.querySelector('.wrap');
-  if (gradientType === 'linear') {
-    wrap.style.background = `${gradientType}-gradient(${gradientDegrees}deg, ${gradientString})`;
-  } else if (gradientType === 'radial') {
-    wrap.style.background = `${gradientType}-gradient(circle, ${gradientString})`;
-  }
+  const wraps = document.querySelectorAll('.jrgg-gradient-bg');
+  wraps.forEach(wrap => {
+    if (gradientType === 'linear') {
+      wrap.style.background = `${gradientType}-gradient(${gradientDegrees}deg, ${gradientString})`;
+    } else if (gradientType === 'radial') {
+      wrap.style.background = `${gradientType}-gradient(circle, ${gradientString})`;
+    }
+  });
 }

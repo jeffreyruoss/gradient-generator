@@ -25,7 +25,7 @@ export function createSavedGradients() {
 
 export function addSavedGradientsHeading() {
 	if (document.querySelector('.saved-gradients-heading')) return;
-	const savedGradientsHeading = document.createElement('h2');
+	const savedGradientsHeading = document.createElement('div');
 	savedGradientsHeading.textContent = 'Saved Gradients';
 	savedGradientsHeading.classList.add('saved-gradients-heading');
 	savedGradientsContainer.insertAdjacentElement('beforebegin', savedGradientsHeading);

@@ -18,14 +18,9 @@ export class GradientGenerator {
 
   render() {
     document.querySelector(`#${this.containerId}`).innerHTML = `
-      <div class="wrap">
-        <div class="main">
-          <h1>Gradient Generator</h1>
-          ${createGradientContainer()}
-          ${createCodeBox()}
-          ${createSavedGradients()}
-        </div>
-      </div>
+      ${createGradientContainer()}
+      ${createCodeBox()}
+      ${createSavedGradients()}
     `;
 
     document.addEventListener('DOMContentLoaded', () => init());

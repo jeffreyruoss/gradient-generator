@@ -24,6 +24,10 @@
 	font-size: 15px;
 }
 
+button.code-box-copy {
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
 .code-box-copy svg {
 	position: absolute;
 	top: 7px;
