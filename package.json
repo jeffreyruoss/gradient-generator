@@ -17,18 +17,22 @@
     "vite-plugin-css-injected-by-js": "^3.5.1"
   },
   "files": [
-    "dist-npm"
+    "dist-npm",
+    "dist-npm/fonts",
+    "index.d.ts"
   ],
   "main": "./dist-npm/gradient-generator.umd.js",
   "module": "./dist-npm/gradient-generator.es.js",
+  "types": "./index.d.ts",
   "exports": {
     ".": {
       "import": "./dist-npm/gradient-generator.es.js",
-      "require": "./dist-npm/gradient-generator.umd.js"
-    }
+      "require": "./dist-npm/gradient-generator.umd.js",
+      "types": "./index.d.ts"
+    },
+    "./fonts/*": "./dist-npm/fonts/*"
   },
   "dependencies": {
-    "gradient-generator": "file:gradient-generator-0.0.0.tgz",
     "lottie-web": "^5.12.2"
   }
 }
