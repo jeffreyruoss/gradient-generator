@@ -23,11 +23,13 @@
   ],
   "main": "./dist-npm/gradient-generator.umd.js",
   "module": "./dist-npm/gradient-generator.es.js",
+  "browser": "./dist-npm/gradient-generator.umd.js",
   "types": "./index.d.ts",
   "exports": {
     ".": {
       "import": "./dist-npm/gradient-generator.es.js",
       "require": "./dist-npm/gradient-generator.umd.js",
+      "browser": "./dist-npm/gradient-generator.umd.js",
       "types": "./index.d.ts"
     },
     "./fonts/*": "./dist-npm/fonts/*"

@@ -21,7 +21,8 @@ export default defineConfig(({ command, mode }) => {
 				lib: {
 					entry: resolve(__dirname, 'src/index.js'),
 					name: 'GradientGenerator',
-					fileName: (format) => `gradient-generator.${format}.js`
+					fileName: (format) => `gradient-generator.${format}.js`,
+					formats: ['es', 'umd']
 				},
 				outDir: 'dist-npm',
 				rollupOptions: {
