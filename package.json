@@ -2,7 +2,7 @@
   "name": "gradient-generator",
   "homepage": "https://jeffreyruoss.github.io/gradient-generator/",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,6 +10,9 @@
     "build:npm": "vite build --mode npm",
     "preview": "vite preview",
     "deploy": "gh-pages -d dist"
+  },
+  "dependencies": {
+    "lottie-web": "^5.12.2"
   },
   "devDependencies": {
     "gh-pages": "^6.1.1",
@@ -34,7 +37,18 @@
     },
     "./fonts/*": "./dist-npm/fonts/*"
   },
-  "dependencies": {
-    "lottie-web": "^5.12.2"
+  "keywords": [
+    "gradient",
+    "generator",
+    "css",
+    "component"
+  ],
+  "author": "Jeffrey Ruoss",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jeffreyruoss/gradient-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jeffreyruoss/gradient-generator/issues"
   }
 }
